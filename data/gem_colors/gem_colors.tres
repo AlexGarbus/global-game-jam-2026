@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GemColors" format=3 uid="uid://dv74wgaeq8f2k"]
+
+[ext_resource type="Script" uid="uid://cqtsw0qbj6nhk" path="res://data/gem_colors/gem_colors.gd" id="1_f65e5"]
+
+[resource]
+script = ExtResource("1_f65e5")
+colors = Array[Color]([Color(1, 0, 0, 1), Color(1, 0.33333334, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1), Color(0.33333334, 0, 1, 1)])
+metadata/_custom_type_script = "uid://cqtsw0qbj6nhk"

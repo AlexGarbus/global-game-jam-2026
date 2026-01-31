@@ -1,6 +1,8 @@
 extends RigidBody3D
 
 
+@export var inventory: Inventory
+@export_group("Knockback")
 ## Amount to change the player's height by after knockback.
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var knockback_correction := 1.0
 @export_group("Linear Motion")
@@ -24,6 +26,11 @@ var _knockback_angle := 0.0
 @onready var _knockback_timer: Timer = $KnockbackTimer
 
 
+#region Engine Callbacks
+func _ready() -> void:
+	inventory.all_gems_collected.connect(_on_all_gems_collected)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if input_disabled:
 		return
@@ -36,8 +43,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		return
 	_apply_angular_force(state)
 	_apply_linear_force(state)
+#endregion
 
-
+#region Physics
 func _apply_angular_force(state: PhysicsDirectBodyState3D) -> void:
 	var to_x := 0.0
 	var to_y := 0.0
@@ -76,8 +84,9 @@ func _set_force_integration(enabled: bool) -> void:
 	else:
 		angular_velocity = Vector3.ZERO
 		linear_velocity = Vector3.ZERO
+#endregion
 
-
+#region Knockback
 func _start_knockback() -> void:
 	_knockback_angle = global_rotation.y
 	_set_force_integration(true)
@@ -90,6 +99,16 @@ func _end_knockback() -> void:
 	global_rotation = Vector3(0, _knockback_angle, 0)
 	_camera_pivot.lock_rotation = false
 	_set_force_integration(false)
+#endregion
+
+#region Powerups
+func set_super(value: bool) -> void:
+	pass
+#endregion
+
+#region Connected Signals
+func _on_all_gems_collected() -> void:
+	set_super(true)
 
 
 func _on_health_changed(old_value: int, new_value: int) -> void:
@@ -109,3 +128,4 @@ func _on_collect_area_3d_area_entered(area: Area3D) -> void:
 		return
 	for effect in pickup_area.effects:
 		effect.apply(self)
+#endregion

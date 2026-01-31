@@ -1,17 +1,26 @@
 [gd_scene format=3 uid="uid://dqbqkey8jpx8d"]
 
-[ext_resource type="Script" uid="uid://blgsv2yonpekb" path="res://entities/pickups/pickup_area.gd" id="1_bsn3s"]
+[ext_resource type="Script" uid="uid://b8rtosl0coapf" path="res://entities/pickups/gems/gem.gd" id="1_bsn3s"]
 [ext_resource type="PackedScene" uid="uid://b4ksdl5wyrtis" path="res://entities/pickups/gems/gem.glb" id="1_g4cst"]
+[ext_resource type="Resource" uid="uid://dv74wgaeq8f2k" path="res://data/gem_colors/gem_colors.tres" id="2_od4xg"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_od4xg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od4xg"]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4cst"]
 radius = 1.0
 
-[sub_resource type="Animation" id="Animation_bsn3s"]
+[sub_resource type="Animation" id="Animation_od4xg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh:rotation")
+tracks/0/path = NodePath("Gem:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,13 +30,13 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_od4xg"]
+[sub_resource type="Animation" id="Animation_bsn3s"]
 resource_name = "spin"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh:rotation")
+tracks/0/path = NodePath("Gem:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,24 +46,25 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xe4mj"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_od4xg"]
 _data = {
-&"RESET": SubResource("Animation_bsn3s"),
-&"spin": SubResource("Animation_od4xg")
+&"RESET": SubResource("Animation_od4xg"),
+&"spin": SubResource("Animation_bsn3s")
 }
 
-[node name="Gem" type="Area3D" unique_id=83450881]
+[node name="Gem" unique_id=1095506796 instance=ExtResource("1_g4cst")]
 collision_layer = 32
 collision_mask = 64
 script = ExtResource("1_bsn3s")
-metadata/_custom_type_script = "uid://blgsv2yonpekb"
+mesh_colors = ExtResource("2_od4xg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1139799914]
-shape = SubResource("SphereShape3D_od4xg")
+[node name="Gem" parent="." index="0" unique_id=181327058]
+surface_material_override/0 = SubResource("StandardMaterial3D_od4xg")
 
-[node name="Mesh" parent="." unique_id=1510882838 instance=ExtResource("1_g4cst")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=179168122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_g4cst")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=703676499]
-libraries/ = SubResource("AnimationLibrary_xe4mj")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=643560633]
+libraries/ = SubResource("AnimationLibrary_od4xg")
 autoplay = &"spin"

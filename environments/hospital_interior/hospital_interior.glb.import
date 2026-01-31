@@ -3,21 +3,21 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4ksdl5wyrtis"
-path="res://.godot/imported/gem.glb-99e3c605d6a777fb15434a4e4175e0e3.scn"
+uid="uid://d34x6k7o43wxg"
+path="res://.godot/imported/hospital_interior.glb-21cf67ef091554a5eb3374857e038dae.scn"
 
 [deps]
 
-source_file="res://entities/pickups/gems/gem.glb"
-dest_files=["res://.godot/imported/gem.glb-99e3c605d6a777fb15434a4e4175e0e3.scn"]
+source_file="res://environments/hospital_interior/hospital_interior.glb"
+dest_files=["res://.godot/imported/hospital_interior.glb-21cf67ef091554a5eb3374857e038dae.scn"]
 
 [params]
 
-nodes/root_type="Area3D"
-nodes/root_name="Gem"
+nodes/root_type=""
+nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=10.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -41,8 +41,13 @@ _subresources={
 "materials": {
 "material_0": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://entities/pickups/gems/material_0.tres",
-"use_external/path": "uid://dpb3ef5o70h2r"
+"use_external/fallback_path": "res://environments/hospital_interior/material_0.tres",
+"use_external/path": "uid://d73aveq078rr"
+}
+},
+"nodes": {
+"PATH:HospitalInterior": {
+"generate/physics": true
 }
 }
 }

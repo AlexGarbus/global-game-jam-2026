@@ -1,51 +1,114 @@
 [gd_scene format=3 uid="uid://bsia3qptd8ifs"]
 
 [ext_resource type="PackedScene" uid="uid://ohxcxhi3hqu0" path="res://main/scenes/levels/level_base.tscn" id="1_6i8ql"]
+[ext_resource type="PackedScene" uid="uid://cvy34wk4f62bl" path="res://entities/barrier/barrier.tscn" id="2_eiw0b"]
 [ext_resource type="PackedScene" uid="uid://dorx0bsx24cte" path="res://entities/buildings/hospital.tscn" id="2_m5sr4"]
+[ext_resource type="Script" uid="uid://dmwbskve5lrly" path="res://data/level_advance_conditions/area_enter_condition.gd" id="2_twpts"]
 [ext_resource type="PackedScene" uid="uid://cl4pn5vjavr5" path="res://entities/buildings/generic_sm.tscn" id="3_dt5a4"]
 [ext_resource type="PackedScene" uid="uid://dism8t8vmbsr7" path="res://entities/buildings/generic_lg.tscn" id="4_eiw0b"]
 [ext_resource type="PackedScene" uid="uid://birw6yo18gfhc" path="res://entities/buildings/generic_md.tscn" id="5_iiir4"]
+[ext_resource type="PackedScene" uid="uid://dqbqkey8jpx8d" path="res://entities/pickups/gems/gem.tscn" id="6_eiw0b"]
+[ext_resource type="Script" uid="uid://epf0qs8x3p16" path="res://data/pickup_effects/pickup_effect.gd" id="8_i3r2j"]
+[ext_resource type="Script" uid="uid://but8ckxt3e7w6" path="res://data/pickup_effects/gem_pickup_effect.gd" id="9_twpts"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6i8ql"]
+[sub_resource type="Resource" id="Resource_uaal5"]
+script = ExtResource("2_twpts")
+area_path = NodePath("PixelatedViewportContainer/SubViewport/Buildings/Hospital/Goal")
+metadata/_custom_type_script = "uid://dmwbskve5lrly"
 
-[sub_resource type="Gradient" id="Gradient_6i8ql"]
+[sub_resource type="Gradient" id="Gradient_twpts"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.5)
 colors = PackedColorArray(0.33333334, 0.33333334, 0.6666667, 1, 0.33333334, 0.6666667, 0.33333334, 1)
 metadata/_snap_enabled = true
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_m5sr4"]
-gradient = SubResource("Gradient_6i8ql")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_myl60"]
+gradient = SubResource("Gradient_twpts")
 fill_to = Vector2(0, 1)
 metadata/_snap_enabled = true
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3r3ke"]
-panorama = SubResource("GradientTexture2D_m5sr4")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_be6o3"]
+panorama = SubResource("GradientTexture2D_myl60")
 filter = false
 
-[sub_resource type="Sky" id="Sky_cr5x0"]
-sky_material = SubResource("PanoramaSkyMaterial_3r3ke")
+[sub_resource type="Sky" id="Sky_8xx5y"]
+sky_material = SubResource("PanoramaSkyMaterial_be6o3")
 
-[sub_resource type="Environment" id="Environment_dt5a4"]
+[sub_resource type="Environment" id="Environment_50pxj"]
 background_mode = 2
-sky = SubResource("Sky_cr5x0")
+sky = SubResource("Sky_8xx5y")
 ambient_light_source = 2
 ambient_light_color = Color(0.6039216, 0.6039216, 0.5019608, 1)
 reflected_light_source = 1
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6i8ql"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yi4o2"]
+radius = 10.0
+
+[sub_resource type="Resource" id="Resource_myl60"]
+script = ExtResource("9_twpts")
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_be6o3"]
+script = ExtResource("9_twpts")
+gem_type = 1
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_8xx5y"]
+script = ExtResource("9_twpts")
+gem_type = 2
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_50pxj"]
+script = ExtResource("9_twpts")
+gem_type = 3
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_80ana"]
+script = ExtResource("9_twpts")
+gem_type = 4
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_at1ct"]
+script = ExtResource("9_twpts")
+gem_type = 5
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_46lcd"]
+script = ExtResource("9_twpts")
+gem_type = 6
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
 [node name="Level" unique_id=2067472884 instance=ExtResource("1_6i8ql")]
+advance_condition = SubResource("Resource_uaal5")
+
+[node name="WorldEnvironment" parent="." index="1" unique_id=2142308483]
+environment = SubResource("Environment_50pxj")
 
 [node name="Player" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="0" unique_id=2007518119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 200)
 
-[node name="Ground" type="StaticBody3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=1716571445]
+[node name="Barrier" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=805690231 node_paths=PackedStringArray("inventory") instance=ExtResource("2_eiw0b")]
+inventory = NodePath("../../../Inventory")
+
+[node name="Ground" type="StaticBody3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=1716571445]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Ground" index="0" unique_id=1814017404]
 shape = SubResource("WorldBoundaryShape3D_6i8ql")
 
-[node name="Buildings" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=658249836]
+[node name="Buildings" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="3" unique_id=658249836]
 
 [node name="Hospital" parent="PixelatedViewportContainer/SubViewport/Buildings" index="0" unique_id=1476696496 instance=ExtResource("2_m5sr4")]
+
+[node name="Goal" type="Area3D" parent="PixelatedViewportContainer/SubViewport/Buildings/Hospital" index="8" unique_id=1675729345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Buildings/Hospital/Goal" index="0" unique_id=1346456637]
+shape = SubResource("SphereShape3D_yi4o2")
 
 [node name="GenericSmall" parent="PixelatedViewportContainer/SubViewport/Buildings" index="1" unique_id=1907712280 instance=ExtResource("3_dt5a4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -30)
@@ -71,9 +134,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 30)
 [node name="GenericMedium" parent="PixelatedViewportContainer/SubViewport/Buildings" index="8" unique_id=620681790 instance=ExtResource("5_iiir4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -30)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=1028352035]
-environment = SubResource("Environment_dt5a4")
+[node name="Gems" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="4" unique_id=1884276884]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="3" unique_id=635867415]
-transform = Transform3D(0.5, 0.7071068, -0.49999997, 0.7071068, -3.090862e-08, 0.7071068, 0.49999997, -0.70710677, -0.5, 0, 0, 0)
-light_energy = 0.5
+[node name="GemRed" parent="PixelatedViewportContainer/SubViewport/Gems" index="0" unique_id=1095506796 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_myl60")])
+
+[node name="GemOrange" parent="PixelatedViewportContainer/SubViewport/Gems" index="1" unique_id=1388669149 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
+type = 1
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_be6o3")])
+
+[node name="GemYellow" parent="PixelatedViewportContainer/SubViewport/Gems" index="2" unique_id=702565288 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34)
+type = 2
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_8xx5y")])
+
+[node name="GemGreen" parent="PixelatedViewportContainer/SubViewport/Gems" index="3" unique_id=2120489671 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
+type = 3
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_50pxj")])
+
+[node name="GemBlue" parent="PixelatedViewportContainer/SubViewport/Gems" index="4" unique_id=1244349392 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38)
+type = 4
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_80ana")])
+
+[node name="GemIndigo" parent="PixelatedViewportContainer/SubViewport/Gems" index="5" unique_id=1065386700 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+type = 5
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_at1ct")])
+
+[node name="GemViolet" parent="PixelatedViewportContainer/SubViewport/Gems" index="6" unique_id=1065799638 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
+type = 6
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_46lcd")])

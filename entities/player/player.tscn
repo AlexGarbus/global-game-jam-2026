@@ -36,7 +36,7 @@ physics_material_override = SubResource("PhysicsMaterial_wvtmh")
 custom_integrator = true
 script = ExtResource("1_abrql")
 knockback_correction = 3.0
-_max_linear_speed = 25.0
+_max_linear_speed = 15.0
 _min_pitch = -1.2217304763960306
 _max_pitch = 1.2217304763960306
 
