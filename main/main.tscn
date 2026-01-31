@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cftk4g0qb53gu"]
+
+[ext_resource type="Script" uid="uid://bb2y0g5a02or7" path="res://main/main.gd" id="1_pjrb6"]
+[ext_resource type="PackedScene" uid="uid://dqdgb57racexl" path="res://main/scenes/title/title.tscn" id="2_3wy1v"]
+[ext_resource type="PackedScene" uid="uid://do7fs5anfwcj8" path="res://user_interface/pause/pause.tscn" id="2_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://wy260a1ekquc" path="res://main/scenes/levels/level_test.tscn" id="3_kfbq2"]
+[ext_resource type="PackedScene" uid="uid://dgjl6tt1ebvqx" path="res://user_interface/screen_fade/screen_fade.tscn" id="3_xwkvk"]
+
+[node name="Main" type="Node" unique_id=1618417118]
+script = ExtResource("1_pjrb6")
+main_scenes = Array[PackedScene]([ExtResource("2_3wy1v"), ExtResource("3_kfbq2")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1958456174]
+layer = 2
+
+[node name="Pause" parent="CanvasLayer" unique_id=1128720161 instance=ExtResource("2_xwkvk")]
+visible = false
+
+[node name="ScreenFade" parent="CanvasLayer" unique_id=1602547693 instance=ExtResource("3_xwkvk")]
+visible = false
+
+[connection signal="fullscreen_toggled" from="CanvasLayer/Pause" to="." method="_on_pause_fullscreen_toggled"]
+[connection signal="quit_pressed" from="CanvasLayer/Pause" to="." method="_on_pause_quit_pressed"]

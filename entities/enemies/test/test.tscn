@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://lbmaurqybjwq"]
+
+[ext_resource type="Script" uid="uid://dm57w3cic8pqo" path="res://entities/enemies/test/test.gd" id="1_v4gye"]
+[ext_resource type="Script" uid="uid://da2ekqxdmi875" path="res://common/nodes/3d/spawner_3d.gd" id="2_ue5d7"]
+[ext_resource type="PackedScene" uid="uid://fxgjmjsnvkjf" path="res://entities/bullets/bullet_enemy.tscn" id="3_pvbdo"]
+[ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="4_pvbdo"]
+[ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="5_yw7k8"]
+[ext_resource type="Script" uid="uid://bvprpjmdwf8rn" path="res://common/nodes/defeat_changer.gd" id="6_71cd2"]
+[ext_resource type="PackedScene" uid="uid://6ysk5v55r5u7" path="res://entities/drop/drop.tscn" id="7_71cd2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yw7k8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_71cd2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r5x4n"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvbdo"]
+
+[node name="Test" type="StaticBody3D" unique_id=2117091702]
+collision_layer = 8
+script = ExtResource("1_v4gye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1957745534]
+shape = SubResource("BoxShape3D_yw7k8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=692607577]
+mesh = SubResource("BoxMesh_71cd2")
+
+[node name="BulletSpawner" type="Node3D" parent="." unique_id=94125655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+script = ExtResource("2_ue5d7")
+scene = ExtResource("3_pvbdo")
+spawn_path = NodePath("..")
+metadata/_custom_type_script = "uid://da2ekqxdmi875"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BulletSpawner" unique_id=427821394]
+mesh = SubResource("BoxMesh_r5x4n")
+
+[node name="DamageArea3D" type="Area3D" parent="." unique_id=2046434837 node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("4_pvbdo")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://c58ps3xr345lv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea3D" unique_id=750111816]
+shape = SubResource("BoxShape3D_pvbdo")
+
+[node name="Health" type="Node" parent="." unique_id=1279702567]
+script = ExtResource("5_yw7k8")
+max_value = 3
+metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
+
+[node name="BulletTimer" type="Timer" parent="." unique_id=767341397]
+wait_time = 3.0
+autostart = true
+
+[node name="DefeatChanger" type="Node" parent="." unique_id=314672012 node_paths=PackedStringArray("health", "target")]
+script = ExtResource("6_71cd2")
+health = NodePath("../Health")
+target = NodePath("..")
+scene = ExtResource("7_71cd2")
+metadata/_custom_type_script = "uid://bvprpjmdwf8rn"
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

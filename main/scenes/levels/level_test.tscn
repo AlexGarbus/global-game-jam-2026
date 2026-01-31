@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://wy260a1ekquc"]
+
+[ext_resource type="PackedScene" uid="uid://ohxcxhi3hqu0" path="res://main/scenes/levels/level_base.tscn" id="1_iho50"]
+[ext_resource type="Texture2D" uid="uid://ba0seq0hep51c" path="res://icon.svg" id="2_3wh16"]
+[ext_resource type="PackedScene" uid="uid://lbmaurqybjwq" path="res://entities/enemies/test/test.tscn" id="3_4w0vo"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4w0vo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4e4k"]
+albedo_texture = ExtResource("2_3wh16")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eu8vo"]
+material = SubResource("StandardMaterial3D_r4e4k")
+size = Vector2(100, 100)
+
+[sub_resource type="Environment" id="Environment_3wh16"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="LevelTest" unique_id=2067472884 instance=ExtResource("1_iho50")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=123448656]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=567406770]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/StaticBody3D" index="0" unique_id=2006722718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+shape = SubResource("WorldBoundaryShape3D_4w0vo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PixelatedViewportContainer/SubViewport/StaticBody3D" index="1" unique_id=1242429594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+mesh = SubResource("PlaneMesh_eu8vo")
+
+[node name="Test" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="3" unique_id=2117091702 instance=ExtResource("3_4w0vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.399085, -9.5, 21.86174)
+
+[node name="Test2" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="4" unique_id=1628126174 instance=ExtResource("3_4w0vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.932693, -9.5, 21.86174)
+
+[node name="Test3" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="5" unique_id=191010601 instance=ExtResource("3_4w0vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.919807, -9.5, 21.86174)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=1378322648]
+environment = SubResource("Environment_3wh16")

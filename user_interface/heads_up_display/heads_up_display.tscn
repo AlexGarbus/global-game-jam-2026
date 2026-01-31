@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://x7gpm0ttcucv"]
+
+[ext_resource type="Script" uid="uid://dquhvly8imdgg" path="res://user_interface/heads_up_display/heads_up_display.gd" id="1_8i3n6"]
+[ext_resource type="PackedScene" uid="uid://cha2d45amudjb" path="res://user_interface/heads_up_display/health_bar/health_bar.tscn" id="1_uljfa"]
+
+[node name="HeadsUpDisplay" type="Control" unique_id=257419253]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8i3n6")
+
+[node name="PlayerHealthBar" parent="." unique_id=2034853520 instance=ExtResource("1_uljfa")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+offset_left = 10.0
+offset_top = -20.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_vertical = 0

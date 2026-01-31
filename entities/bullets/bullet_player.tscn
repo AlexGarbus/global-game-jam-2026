@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b6yp3n5lh8lcq"]
+
+[ext_resource type="PackedScene" uid="uid://cxs3i5f4vdvdr" path="res://entities/bullets/bullet_base.tscn" id="1_qi13p"]
+
+[node name="BulletPlayer" unique_id=870228558 instance=ExtResource("1_qi13p")]
+
+[node name="AttackArea3D" parent="." index="1" unique_id=1924340408]
+collision_layer = 4
+collision_mask = 9

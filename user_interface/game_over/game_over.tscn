@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://coqqhypit4pw3"]
+
+[ext_resource type="Script" uid="uid://x7uyr2271weh" path="res://user_interface/game_over/game_over.gd" id="1_xld8n"]
+
+[sub_resource type="Animation" id="Animation_xn8g0"]
+resource_name = "animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vvdb"]
+_data = {
+&"animation": SubResource("Animation_xn8g0")
+}
+
+[node name="GameOver" type="Control" unique_id=213550801]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xld8n")
+
+[node name="Label" type="Label" parent="." unique_id=571503423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1229566536]
+wait_time = 6.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=488316326]
+libraries/ = SubResource("AnimationLibrary_8vvdb")
+
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

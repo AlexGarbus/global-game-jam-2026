@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cxs3i5f4vdvdr"]
+
+[ext_resource type="Script" uid="uid://c5cjpdmpkglt1" path="res://entities/bullets/bullet.gd" id="1_d7d72"]
+[ext_resource type="Script" uid="uid://dls6ti1x2q5gs" path="res://common/nodes/3d/attack_area_3d.gd" id="2_0fp35"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_543ky"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_k76ui"]
+material = SubResource("StandardMaterial3D_543ky")
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxs84"]
+radius = 0.1
+
+[node name="Bullet" type="Node3D" unique_id=870228558]
+script = ExtResource("1_d7d72")
+move_speed = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=525658087]
+mesh = SubResource("SphereMesh_k76ui")
+
+[node name="AttackArea3D" type="Area3D" parent="." unique_id=1924340408]
+script = ExtResource("2_0fp35")
+metadata/_custom_type_script = "uid://dls6ti1x2q5gs"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea3D" unique_id=1201624066]
+shape = SubResource("SphereShape3D_cxs84")
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=245818261]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="AttackArea3D" to="." method="_on_attack_area_3d_area_entered"]
+[connection signal="body_entered" from="AttackArea3D" to="." method="_on_attack_area_3d_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

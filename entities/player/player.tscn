@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://34asvf5u2d7t"]
+
+[ext_resource type="Script" uid="uid://covk2281f0gro" path="res://entities/player/player.gd" id="1_abrql"]
+[ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="1_symyc"]
+[ext_resource type="Script" uid="uid://bpbjfkilxncva" path="res://entities/player/comonents/player_effects.gd" id="2_bectd"]
+[ext_resource type="Script" uid="uid://dtxy0u3a2qxg3" path="res://common/nodes/3d/node_follow_3d.gd" id="3_sglur"]
+[ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="4_bls4j"]
+[ext_resource type="PackedScene" uid="uid://b6yp3n5lh8lcq" path="res://entities/bullets/bullet_player.tscn" id="5_8fjmc"]
+[ext_resource type="Script" uid="uid://da2ekqxdmi875" path="res://common/nodes/3d/spawner_3d.gd" id="5_fkugw"]
+[ext_resource type="PackedScene" uid="uid://bx67ifljxw1cr" path="res://entities/effects/explosion/explosion.tscn" id="7_26q78"]
+[ext_resource type="PackedScene" uid="uid://ckbpvhkxvixl7" path="res://entities/effects/flame/flame.tscn" id="8_bectd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_symyc"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_symyc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bls4j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bectd"]
+radius = 1.0
+
+[node name="Player" type="RigidBody3D" unique_id=1798822792]
+collision_layer = 2
+collision_mask = 9
+mass = 100.0
+custom_integrator = true
+script = ExtResource("1_abrql")
+_max_linear_speed = 25.0
+_min_pitch = -0.7853981633974483
+_max_pitch = 0.7853981633974483
+
+[node name="Effects" type="Node" parent="." unique_id=1103082749]
+script = ExtResource("2_bectd")
+
+[node name="DefeatTimer" type="Timer" parent="Effects" unique_id=386012798]
+wait_time = 3.0
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=876458185]
+shape = SubResource("BoxShape3D_symyc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1505369879]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_symyc")
+
+[node name="DamageArea3D" type="Area3D" parent="." unique_id=493418436 node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 25
+monitorable = false
+script = ExtResource("4_bls4j")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://c58ps3xr345lv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea3D" unique_id=421833490]
+shape = SubResource("BoxShape3D_bls4j")
+
+[node name="CollectArea3D" type="Area3D" parent="." unique_id=890383185]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectArea3D" unique_id=1347834599]
+shape = SubResource("SphereShape3D_bectd")
+debug_color = Color(0, 0.64562905, 0.26264465, 0.41960785)
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1223868873 node_paths=PackedStringArray("target")]
+top_level = true
+script = ExtResource("3_sglur")
+target = NodePath("..")
+angular_weight = 20.0
+metadata/_custom_type_script = "uid://dtxy0u3a2qxg3"
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1606779219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+current = true
+
+[node name="BulletSpawner" type="Node3D" parent="." unique_id=2060330343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+script = ExtResource("5_fkugw")
+scene = ExtResource("5_8fjmc")
+spawn_path = NodePath("..")
+metadata/_custom_type_script = "uid://da2ekqxdmi875"
+
+[node name="Explosion" parent="." unique_id=729686766 instance=ExtResource("7_26q78")]
+visible = false
+pixel_size = 0.0625
+render_priority = 1
+autoplay = ""
+frame = 15
+frame_progress = 1.0
+
+[node name="Flame" parent="." unique_id=1644702019 instance=ExtResource("8_bectd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+pixel_size = 0.015625
+autoplay = ""
+frame_progress = 0.05741931
+
+[node name="Health" type="Node" parent="." unique_id=2010310480]
+script = ExtResource("1_symyc")
+max_value = 10
+metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
+
+[node name="KnockbackTimer" type="Timer" parent="." unique_id=471656005]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Effects/DefeatTimer" to="Effects" method="_on_defeat_timer_timeout"]
+[connection signal="area_entered" from="CollectArea3D" to="." method="_on_collect_area_3d_area_entered"]
+[connection signal="changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="reached_zero" from="Health" to="Effects" method="_on_health_reached_zero"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

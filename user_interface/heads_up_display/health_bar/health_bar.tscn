@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cha2d45amudjb"]
+
+[ext_resource type="Script" uid="uid://cffrarbeuph2t" path="res://user_interface/heads_up_display/health_bar/health_bar.gd" id="1_fjubt"]
+
+[node name="HealthBar" type="ProgressBar" unique_id=2034853520]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+value = 1.0
+show_percentage = false
+script = ExtResource("1_fjubt")
