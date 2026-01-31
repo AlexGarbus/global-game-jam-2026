@@ -2,8 +2,6 @@ class_name AreaEnterCondition
 extends LevelAdvanceCondition
 
 
-signal fulfilled
-
 @export var area_path: NodePath
 
 

@@ -2,6 +2,7 @@ extends RigidBody3D
 
 
 @export var inventory: Inventory
+@export var input_disabled := false
 @export_group("Knockback")
 ## Amount to change the player's height by after knockback.
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var knockback_correction := 1.0
@@ -14,7 +15,6 @@ extends RigidBody3D
 @export_range(-90.0, 0.0, 0.1, "radians_as_degrees") var _min_pitch := 0.0
 @export_range(0.0, 90.0, 0.1, "radians_as_degrees") var _max_pitch := 0.0
 
-var input_disabled := false
 var _angular_speed := Vector2.ZERO
 var _linear_speed := 0.0
 var _knockback_angle := 0.0

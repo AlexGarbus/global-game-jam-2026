@@ -16,12 +16,15 @@ enum SPAWN_MODE {
 ## The relative path that [member scene] will be spawned at.
 @export var spawn_path: NodePath
 @export var spawn_mode: SPAWN_MODE
+## Whether spawned instances should inherit their parents' transforms.
+@export var spawn_top_level := false
 
 func spawn() -> void:
 	var instance := scene.instantiate()
 	var instance_3d := instance as Node3D
 	if instance_3d:
 		instance_3d.global_transform = global_transform
+		instance_3d.top_level = spawn_top_level
 	var node := get_node(spawn_path)
 	if spawn_mode == SPAWN_MODE.SIBLING:
 		node.add_sibling(instance)

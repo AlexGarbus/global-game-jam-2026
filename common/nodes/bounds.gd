@@ -7,5 +7,5 @@ extends Node
 @export var target: Node3D
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	target.global_position = target.global_position.clamp(min_position, max_position)
