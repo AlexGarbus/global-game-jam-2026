@@ -13,6 +13,10 @@ extends Node3D
 @export var lock_rotation := false
 
 
+func _ready() -> void:
+	global_position = target.global_position
+
+
 func _physics_process(delta: float) -> void:
 	global_position = global_position.lerp(target.global_position, linear_weight * delta)
 	if not lock_rotation:

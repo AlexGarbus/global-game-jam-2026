@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://bb2y0g5a02or7" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://dqdgb57racexl" path="res://main/scenes/title/title.tscn" id="2_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://do7fs5anfwcj8" path="res://user_interface/pause/pause.tscn" id="2_xwkvk"]
-[ext_resource type="PackedScene" uid="uid://wy260a1ekquc" path="res://main/scenes/levels/level_test.tscn" id="3_kfbq2"]
+[ext_resource type="PackedScene" uid="uid://bsia3qptd8ifs" path="res://main/scenes/levels/level_1.tscn" id="3_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://dgjl6tt1ebvqx" path="res://user_interface/screen_fade/screen_fade.tscn" id="3_xwkvk"]
 
 [node name="Main" type="Node" unique_id=1618417118]
 script = ExtResource("1_pjrb6")
-main_scenes = Array[PackedScene]([ExtResource("2_3wy1v"), ExtResource("3_kfbq2")])
+main_scenes = Array[PackedScene]([ExtResource("2_3wy1v"), ExtResource("3_3wy1v")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1958456174]
 layer = 2

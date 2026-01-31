@@ -88,6 +88,7 @@ pause={
 3d_physics/layer_5="enemy attack"
 3d_physics/layer_6="pickup"
 3d_physics/layer_7="pickup collect"
+3d_physics/layer_8="bounds"
 
 [physics]
 

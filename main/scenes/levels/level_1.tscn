@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bsia3qptd8ifs"]
+
+[ext_resource type="PackedScene" uid="uid://ohxcxhi3hqu0" path="res://main/scenes/levels/level_base.tscn" id="1_6i8ql"]
+[ext_resource type="PackedScene" uid="uid://dorx0bsx24cte" path="res://entities/buildings/hospital.tscn" id="2_m5sr4"]
+[ext_resource type="PackedScene" uid="uid://cl4pn5vjavr5" path="res://entities/buildings/generic_sm.tscn" id="3_dt5a4"]
+[ext_resource type="PackedScene" uid="uid://dism8t8vmbsr7" path="res://entities/buildings/generic_lg.tscn" id="4_eiw0b"]
+[ext_resource type="PackedScene" uid="uid://birw6yo18gfhc" path="res://entities/buildings/generic_md.tscn" id="5_iiir4"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6i8ql"]
+
+[sub_resource type="Gradient" id="Gradient_6i8ql"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.33333334, 0.33333334, 0.6666667, 1, 0.33333334, 0.6666667, 0.33333334, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m5sr4"]
+gradient = SubResource("Gradient_6i8ql")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3r3ke"]
+panorama = SubResource("GradientTexture2D_m5sr4")
+filter = false
+
+[sub_resource type="Sky" id="Sky_cr5x0"]
+sky_material = SubResource("PanoramaSkyMaterial_3r3ke")
+
+[sub_resource type="Environment" id="Environment_dt5a4"]
+background_mode = 2
+sky = SubResource("Sky_cr5x0")
+ambient_light_source = 2
+ambient_light_color = Color(0.6039216, 0.6039216, 0.5019608, 1)
+reflected_light_source = 1
+
+[node name="Level" unique_id=2067472884 instance=ExtResource("1_6i8ql")]
+
+[node name="Player" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="0" unique_id=2007518119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 200)
+
+[node name="Ground" type="StaticBody3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=1716571445]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Ground" index="0" unique_id=1814017404]
+shape = SubResource("WorldBoundaryShape3D_6i8ql")
+
+[node name="Buildings" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=658249836]
+
+[node name="Hospital" parent="PixelatedViewportContainer/SubViewport/Buildings" index="0" unique_id=1476696496 instance=ExtResource("2_m5sr4")]
+
+[node name="GenericSmall" parent="PixelatedViewportContainer/SubViewport/Buildings" index="1" unique_id=1907712280 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -30)
+
+[node name="GenericSmall2" parent="PixelatedViewportContainer/SubViewport/Buildings" index="2" unique_id=1009403097 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
+
+[node name="GenericSmall3" parent="PixelatedViewportContainer/SubViewport/Buildings" index="3" unique_id=244548829 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
+
+[node name="GenericSmall4" parent="PixelatedViewportContainer/SubViewport/Buildings" index="4" unique_id=1797743895 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 30)
+
+[node name="GenericLarge" parent="PixelatedViewportContainer/SubViewport/Buildings" index="5" unique_id=208852505 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -30)
+
+[node name="GenericLarge2" parent="PixelatedViewportContainer/SubViewport/Buildings" index="6" unique_id=465307375 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 30)
+
+[node name="GenericLarge3" parent="PixelatedViewportContainer/SubViewport/Buildings" index="7" unique_id=350068155 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 30)
+
+[node name="GenericMedium" parent="PixelatedViewportContainer/SubViewport/Buildings" index="8" unique_id=620681790 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -30)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=1028352035]
+environment = SubResource("Environment_dt5a4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="3" unique_id=635867415]
+transform = Transform3D(0.5, 0.7071068, -0.49999997, 0.7071068, -3.090862e-08, 0.7071068, 0.49999997, -0.70710677, -0.5, 0, 0, 0)
+light_energy = 0.5

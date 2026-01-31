@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dorx0bsx24cte"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgat4"]
+shading_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_cgat4"]
+material = SubResource("StandardMaterial3D_cgat4")
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsays"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qwqat"]
+material = SubResource("StandardMaterial3D_cgat4")
+size = Vector3(20, 8, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67xxh"]
+size = Vector3(20, 8, 7)
+
+[node name="Hospital" type="StaticBody3D" unique_id=730604411]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=946296358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("BoxMesh_cgat4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1447847522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("BoxShape3D_qsays")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=32592479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("BoxMesh_qwqat")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=554676089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_67xxh")
+
+[node name="HospitalLabel" type="Label3D" parent="." unique_id=1683651763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 5.001)
+double_sided = false
+modulate = Color(0, 0.33333334, 1, 1)
+outline_modulate = Color(0, 0, 0.33333334, 1)
+text = "HOSPITAL"
+font_size = 256
+
+[node name="HospitalLabel2" type="Label3D" parent="." unique_id=721972530]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 8, -5.001)
+double_sided = false
+modulate = Color(0, 0.33333334, 1, 1)
+outline_modulate = Color(0, 0, 0.33333334, 1)
+text = "HOSPITAL"
+font_size = 256
+
+[node name="PregnancyLabel" type="Label3D" parent="." unique_id=360402871]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.001, 7, 0)
+double_sided = false
+modulate = Color(0, 0.33333334, 1, 1)
+outline_modulate = Color(0, 0, 0.33333334, 1)
+text = "PREGNANCY WARD"
+font_size = 128
+
+[node name="PregnancyLabel2" type="Label3D" parent="." unique_id=393078620]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -10.001, 7, 0)
+double_sided = false
+modulate = Color(0, 0.33333334, 1, 1)
+outline_modulate = Color(0, 0, 0.33333334, 1)
+text = "PREGNANCY WARD"
+font_size = 128
