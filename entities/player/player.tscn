@@ -26,15 +26,8 @@ mass = 100.0
 custom_integrator = true
 script = ExtResource("1_abrql")
 _max_linear_speed = 25.0
-_min_pitch = -0.7853981633974483
-_max_pitch = 0.7853981633974483
-
-[node name="Effects" type="Node" parent="." unique_id=1103082749]
-script = ExtResource("2_bectd")
-
-[node name="DefeatTimer" type="Timer" parent="Effects" unique_id=386012798]
-wait_time = 3.0
-one_shot = true
+_min_pitch = -1.2217304763960306
+_max_pitch = 1.2217304763960306
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=876458185]
 shape = SubResource("BoxShape3D_symyc")
@@ -95,6 +88,13 @@ pixel_size = 0.015625
 autoplay = ""
 frame_progress = 0.05741931
 
+[node name="Effects" type="Node" parent="." unique_id=1103082749]
+script = ExtResource("2_bectd")
+
+[node name="DefeatTimer" type="Timer" parent="Effects" unique_id=386012798]
+wait_time = 3.0
+one_shot = true
+
 [node name="Health" type="Node" parent="." unique_id=2010310480]
 script = ExtResource("1_symyc")
 max_value = 10
@@ -104,8 +104,8 @@ metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
 wait_time = 2.0
 one_shot = true
 
-[connection signal="timeout" from="Effects/DefeatTimer" to="Effects" method="_on_defeat_timer_timeout"]
 [connection signal="area_entered" from="CollectArea3D" to="." method="_on_collect_area_3d_area_entered"]
+[connection signal="timeout" from="Effects/DefeatTimer" to="Effects" method="_on_defeat_timer_timeout"]
 [connection signal="changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="reached_zero" from="Health" to="Effects" method="_on_health_reached_zero"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

@@ -7,13 +7,14 @@ extends RigidBody3D
 @export_range(0.0, 5.0, 0.1, "or_greater", "hide_control", "suffix:m/s") var _max_linear_speed := 5.0
 @export_range(0.0, 5.0, 0.1, "or_greater", "hide_control") var _linear_acceleration := 5.0
 @export_group("Angular Motion")
-@export_range(0.0, 5.0, 0.1, "or_greater", "hide_control", "suffix:m/s") var _max_angular_speed := 5.0
+@export_range(0.0, 5.0, 0.1, "or_greater", "hide_control", "suffix:rad/s") var _max_angular_speed := 5.0
 @export_range(0.0, 5.0, 0.1, "or_greater", "hide_control") var _angular_acceleration := 5.0
 @export_range(-90.0, 0.0, 0.1, "radians_as_degrees") var _min_pitch := 0.0
 @export_range(0.0, 90.0, 0.1, "radians_as_degrees") var _max_pitch := 0.0
 
 var input_disabled := false
 var _angular_speed := Vector2.ZERO
+var _linear_speed := 0.0
 var _knockback_angle := 0.0
 
 @onready var health: Health = $Health
@@ -33,11 +34,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if input_disabled:
 		return
-	_apply_angular_input(state)
-	_apply_linear_input(state)
+	_apply_angular_force(state)
+	_apply_linear_force(state)
 
 
-func _apply_angular_input(state: PhysicsDirectBodyState3D) -> void:
+func _apply_angular_force(state: PhysicsDirectBodyState3D) -> void:
 	var to_x := 0.0
 	var to_y := 0.0
 	var input_dir := Input.get_vector("move_right", "move_left", "move_up", "move_down")
@@ -55,25 +56,26 @@ func _apply_angular_input(state: PhysicsDirectBodyState3D) -> void:
 		to_x = clamp(_angular_speed.x + input_dir.y, -_max_angular_speed, _max_angular_speed)
 	_angular_speed.x = move_toward(_angular_speed.x, to_x, _angular_acceleration * state.step)
 	_angular_speed.y = move_toward(_angular_speed.y, to_y, _angular_acceleration * state.step)
-	state.angular_velocity = _angular_speed.x * Vector3.RIGHT + _angular_speed.y * Vector3.UP
+	state.transform.basis = state.transform.basis.rotated(Vector3.UP, _angular_speed.y * state.step)
+	state.transform.basis = state.transform.basis.rotated(state.transform.basis.x, _angular_speed.x * state.step)
 
 
-func _apply_linear_input(state: PhysicsDirectBodyState3D)-> void:
-	var current_speed := state.linear_velocity.length()
-	var new_speed := 0.0
-	if Input.is_action_pressed("accelerate"): 
-		if current_speed >= _max_linear_speed:
-			new_speed = _max_linear_speed
-		else:
-			var delta := _linear_acceleration * state.step
-			new_speed = move_toward(current_speed, _max_linear_speed, delta)
-	state.linear_velocity = state.transform.basis.z * -new_speed
+func _apply_linear_force(state: PhysicsDirectBodyState3D)-> void:
+	var delta := _linear_acceleration * state.step
+	_linear_speed = move_toward(_linear_speed, _max_linear_speed, delta)
+	state.linear_velocity = state.transform.basis.z * -_linear_speed
 
 
 func _set_force_integration(enabled: bool) -> void:
 	custom_integrator = not enabled
 	input_disabled = enabled
 	_damage_area.set_deferred("monitoring", not enabled)
+	if enabled:
+		_angular_speed = Vector2.ZERO
+		_linear_speed = 0
+	else:
+		angular_velocity = Vector3.ZERO
+		linear_velocity = Vector3.ZERO
 
 
 func _start_knockback() -> void:
@@ -84,10 +86,10 @@ func _start_knockback() -> void:
 
 
 func _end_knockback() -> void:
-	_set_force_integration(false)
 	global_position.y += knockback_correction
 	global_rotation = Vector3(0, _knockback_angle, 0)
 	_camera_pivot.lock_rotation = false
+	_set_force_integration(false)
 
 
 func _on_health_changed(old_value: int, new_value: int) -> void:
