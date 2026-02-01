@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dquhvly8imdgg" path="res://user_interface/heads_up_display/heads_up_display.gd" id="1_8i3n6"]
 [ext_resource type="PackedScene" uid="uid://cha2d45amudjb" path="res://user_interface/heads_up_display/health_bar/health_bar.tscn" id="1_uljfa"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_8i3n6"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="HeadsUpDisplay" type="Control" unique_id=257419253]
 layout_mode = 3
 anchors_preset = 15
@@ -21,3 +26,26 @@ offset_top = -20.0
 offset_right = -10.0
 offset_bottom = -10.0
 grow_vertical = 0
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1165362687]
+wait_time = 5.0
+one_shot = true
+
+[node name="MessageCanvas" type="CanvasLayer" parent="." unique_id=1543944691]
+
+[node name="MessageLabel" type="Label" parent="MessageCanvas" unique_id=1128115355]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is a test message!
+A pregnant test message!"
+label_settings = SubResource("LabelSettings_8i3n6")
+horizontal_alignment = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="MessageCanvas" unique_id=750038006]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

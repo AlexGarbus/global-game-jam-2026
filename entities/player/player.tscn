@@ -3,13 +3,16 @@
 [ext_resource type="Script" uid="uid://covk2281f0gro" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://bpbjfkilxncva" path="res://entities/player/components/player_effects.gd" id="2_bectd"]
-[ext_resource type="PackedScene" uid="uid://c877n6ydhad8p" path="res://entities/player/player.glb" id="2_wvtmh"]
+[ext_resource type="PackedScene" uid="uid://c877n6ydhad8p" path="res://entities/player/models/player.glb" id="2_wvtmh"]
+[ext_resource type="PackedScene" uid="uid://o6r0v4cvfmyi" path="res://entities/player/models/mask.glb" id="3_a1qjk"]
 [ext_resource type="Script" uid="uid://dtxy0u3a2qxg3" path="res://common/nodes/3d/node_follow_3d.gd" id="3_sglur"]
 [ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="4_bls4j"]
+[ext_resource type="PackedScene" uid="uid://wqt7vynq0unn" path="res://entities/player/models/hair.glb" id="4_j3ovn"]
 [ext_resource type="PackedScene" uid="uid://b6yp3n5lh8lcq" path="res://entities/bullets/bullet_player.tscn" id="5_8fjmc"]
 [ext_resource type="Script" uid="uid://da2ekqxdmi875" path="res://common/nodes/3d/spawner_3d.gd" id="5_fkugw"]
 [ext_resource type="PackedScene" uid="uid://bx67ifljxw1cr" path="res://entities/effects/explosion/explosion.tscn" id="7_26q78"]
 [ext_resource type="PackedScene" uid="uid://ckbpvhkxvixl7" path="res://entities/effects/flame/flame.tscn" id="8_bectd"]
+[ext_resource type="PackedScene" uid="uid://bn2pt0usu8end" path="res://entities/enemies/baby/baby.tscn" id="9_afbqv"]
 [ext_resource type="Script" uid="uid://csvydjj71gbxq" path="res://common/nodes/bounds.gd" id="11_7thud"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wvtmh"]
@@ -36,7 +39,8 @@ physics_material_override = SubResource("PhysicsMaterial_wvtmh")
 custom_integrator = true
 script = ExtResource("1_abrql")
 knockback_correction = 3.0
-_max_linear_speed = 15.0
+_max_linear_speed = 13.0
+_max_angular_speed = 3.0
 _min_pitch = -1.2217304763960306
 _max_pitch = 1.2217304763960306
 
@@ -48,8 +52,15 @@ shape = SubResource("BoxShape3D_symyc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.071154326, 0.080728985)
 shape = SubResource("SphereShape3D_wvtmh")
 
-[node name="Mesh" parent="." unique_id=379450259 instance=ExtResource("2_wvtmh")]
+[node name="Mesh" parent="." unique_id=1940571557 instance=ExtResource("2_wvtmh")]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 0, 0.5)
+
+[node name="Mask" parent="Mesh" unique_id=82053084 instance=ExtResource("3_a1qjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, -0.125)
+
+[node name="Hair" parent="Mesh" unique_id=1727003955 instance=ExtResource("4_j3ovn")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.124, 0)
 
 [node name="DamageArea3D" type="Area3D" parent="." unique_id=493418436 node_paths=PackedStringArray("health")]
 collision_layer = 0
@@ -79,14 +90,25 @@ target = NodePath("..")
 angular_weight = 20.0
 metadata/_custom_type_script = "uid://dtxy0u3a2qxg3"
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1606779219]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=366311255]
+transform = Transform3D(1, 0, 0, 0, 0.94832367, 0.31730464, 0, -0.31730464, 0.94832367, 0, 1, 0)
+collision_mask = 256
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1606779219]
 current = true
 
 [node name="BulletSpawner" type="Node3D" parent="." unique_id=2060330343]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 0.99619466, 0.08715573, 0, -0.08715573, 0.99619466, 0, -0.25, 0)
 script = ExtResource("5_fkugw")
 scene = ExtResource("5_8fjmc")
+spawn_path = NodePath("..")
+metadata/_custom_type_script = "uid://da2ekqxdmi875"
+
+[node name="BabySpawner" type="Node3D" parent="." unique_id=1055142040]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+script = ExtResource("5_fkugw")
+scene = ExtResource("9_afbqv")
 spawn_path = NodePath("..")
 metadata/_custom_type_script = "uid://da2ekqxdmi875"
 
@@ -95,15 +117,13 @@ visible = false
 pixel_size = 0.0625
 render_priority = 1
 autoplay = ""
-frame = 15
-frame_progress = 1.0
 
 [node name="Flame" parent="." unique_id=1644702019 instance=ExtResource("8_bectd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 visible = false
 pixel_size = 0.015625
 autoplay = ""
-frame_progress = 0.05741931
+frame_progress = 0.9372874
 
 [node name="Effects" type="Node" parent="." unique_id=1103082749]
 script = ExtResource("2_bectd")
@@ -112,9 +132,12 @@ script = ExtResource("2_bectd")
 wait_time = 3.0
 one_shot = true
 
+[node name="BabyTimer" type="Timer" parent="Effects" unique_id=2078866588]
+wait_time = 13.0
+one_shot = true
+
 [node name="Health" type="Node" parent="." unique_id=2010310480]
 script = ExtResource("1_symyc")
-max_value = 10
 metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
 
 [node name="KnockbackTimer" type="Timer" parent="." unique_id=471656005]
@@ -130,6 +153,7 @@ metadata/_custom_type_script = "uid://csvydjj71gbxq"
 
 [connection signal="area_entered" from="CollectArea3D" to="." method="_on_collect_area_3d_area_entered"]
 [connection signal="timeout" from="Effects/DefeatTimer" to="Effects" method="_on_defeat_timer_timeout"]
+[connection signal="timeout" from="Effects/BabyTimer" to="Effects" method="_on_baby_timer_timeout"]
 [connection signal="changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="reached_zero" from="Health" to="Effects" method="_on_health_reached_zero"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

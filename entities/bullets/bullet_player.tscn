@@ -3,7 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cxs3i5f4vdvdr" path="res://entities/bullets/bullet_base.tscn" id="1_qi13p"]
 
 [node name="BulletPlayer" unique_id=870228558 instance=ExtResource("1_qi13p")]
+move_speed = 40.0
 
 [node name="AttackArea3D" parent="." index="1" unique_id=1924340408]
 collision_layer = 4
 collision_mask = 9
+
+[node name="LifeTimer" parent="." index="2" unique_id=245818261]
+wait_time = 2.5

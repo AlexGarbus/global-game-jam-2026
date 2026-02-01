@@ -19,6 +19,10 @@ func has_gem(type: Enum.GemType) -> bool:
 	return _gems[type]
 
 
+func has_all_gems() -> bool:
+	return not _gems.has(false)
+
+
 func set_gem(type: Enum.GemType, value: bool) -> void:
 	_gems[type] = value
 	gem_changed.emit(type, value)

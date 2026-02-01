@@ -23,12 +23,17 @@ var _knockback_angle := 0.0
 @onready var _bullet_spawner: Spawner3D = $BulletSpawner
 @onready var _camera_pivot: NodeFollow3D = $CameraPivot
 @onready var _damage_area: DamageArea3D = $DamageArea3D
+@onready var _hair: Node3D = %Hair
 @onready var _knockback_timer: Timer = $KnockbackTimer
 
 
 #region Engine Callbacks
 func _ready() -> void:
-	inventory.all_gems_collected.connect(_on_all_gems_collected)
+	if inventory.has_all_gems():
+		set_super(true)
+	else:
+		set_super(false)
+		inventory.all_gems_collected.connect(_on_all_gems_collected)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -103,7 +108,7 @@ func _end_knockback() -> void:
 
 #region Powerups
 func set_super(value: bool) -> void:
-	pass
+	_hair.visible = value
 #endregion
 
 #region Connected Signals
@@ -113,6 +118,7 @@ func _on_all_gems_collected() -> void:
 
 func _on_health_changed(old_value: int, new_value: int) -> void:
 	if new_value == 0:
+		_camera_pivot.lock_rotation = true
 		_set_force_integration(true)
 	elif new_value < old_value:
 		_start_knockback()

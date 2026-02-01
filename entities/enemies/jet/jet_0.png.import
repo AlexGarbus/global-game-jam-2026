@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ov5uvactiux0"
-path="res://.godot/imported/player_0.png-966c3f867193b7dc206ce17f748e316b.ctex"
+uid="uid://r4npab6ycr5o"
+path="res://.godot/imported/jet_0.png-0a4fddd35fc2e70b9b83c9c20e16d678.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "d3fc5a2145a3eb81b876fa0cf2aaeece"
+"md5": "c7bb111ccf5a70553e548641d337f103"
 }
 
 [deps]
 
-source_file="res://entities/player/player_0.png"
-dest_files=["res://.godot/imported/player_0.png-966c3f867193b7dc206ce17f748e316b.ctex"]
+source_file="res://entities/enemies/jet/jet_0.png"
+dest_files=["res://.godot/imported/jet_0.png-0a4fddd35fc2e70b9b83c9c20e16d678.ctex"]
 
 [params]
 

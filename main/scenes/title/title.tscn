@@ -1,17 +1,94 @@
 [gd_scene format=3 uid="uid://dqdgb57racexl"]
 
 [ext_resource type="Script" uid="uid://bw6tlvsy3jiyu" path="res://main/scenes/main_scene.gd" id="1_8kxsk"]
+[ext_resource type="PackedScene" uid="uid://cwymdjqwhe33l" path="res://common/scenes/pixelated_viewport_container.tscn" id="2_g4t8u"]
 
-[sub_resource type="Animation" id="Animation_we34j"]
-resource_name = "autoplay"
-tracks/0/type = "method"
+[sub_resource type="Animation" id="Animation_g4t8u"]
+length = 0.001
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("PixelatedViewportContainer/SubViewport/TextMesh:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PixelatedViewportContainer/SubViewport/TextMesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PixelatedViewportContainer/SubViewport/TextMesh:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cq4pm"]
+resource_name = "autoplay"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PixelatedViewportContainer/SubViewport/TextMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector3(0, 0, -10), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PixelatedViewportContainer/SubViewport/TextMesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 18.849556, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PixelatedViewportContainer/SubViewport/TextMesh:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector3(0.05, 0.05, 0.05), Vector3(1, 1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [true],
@@ -19,10 +96,25 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8kxsk"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_urrh6"]
 _data = {
-&"autoplay": SubResource("Animation_we34j")
+&"RESET": SubResource("Animation_g4t8u"),
+&"autoplay": SubResource("Animation_cq4pm")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kxsk"]
+shading_mode = 2
+
+[sub_resource type="TextMesh" id="TextMesh_g4t8u"]
+material = SubResource("StandardMaterial3D_8kxsk")
+text = "SUPER
+PREGNANT"
+font_size = 32
+
+[sub_resource type="Environment" id="Environment_cq4pm"]
+ambient_light_source = 2
+ambient_light_color = Color(0.4786616, 0.47866172, 0.47866136, 1)
+reflected_light_source = 1
 
 [node name="Title" type="Control" unique_id=1916987376]
 layout_mode = 3
@@ -33,17 +125,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8kxsk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=950621016]
-libraries/ = SubResource("AnimationLibrary_8kxsk")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=46759825]
+libraries/ = SubResource("AnimationLibrary_urrh6")
 autoplay = &"autoplay"
 
-[node name="Label" type="Label" parent="." unique_id=1048018755]
+[node name="PixelatedViewportContainer" parent="." unique_id=1629097868 instance=ExtResource("2_g4t8u")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "SUPER PREGNANT"
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="PixelatedViewportContainer" unique_id=128661562]
+handle_input_locally = false
+size = Vector2i(256, 144)
+render_target_update_mode = 4
+
+[node name="TextMesh" type="MeshInstance3D" parent="PixelatedViewportContainer/SubViewport" unique_id=529206998]
+mesh = SubResource("TextMesh_g4t8u")
+
+[node name="Camera3D" type="Camera3D" parent="PixelatedViewportContainer/SubViewport" unique_id=1580805049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1369534615]
+environment = SubResource("Environment_cq4pm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2005487540]

@@ -89,6 +89,7 @@ pause={
 3d_physics/layer_6="pickup"
 3d_physics/layer_7="pickup collect"
 3d_physics/layer_8="bounds"
+3d_physics/layer_9="camera interaction"
 
 [physics]
 

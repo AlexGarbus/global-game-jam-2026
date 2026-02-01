@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1e211qg2ny4p"]
+
+[ext_resource type="Texture2D" uid="uid://culbc2lwqvkh3" path="res://entities/enemies/horse/horse_0.png" id="1_tue25"]
+
+[resource]
+resource_name = "material_0"
+shading_mode = 2
+albedo_texture = ExtResource("1_tue25")
+texture_filter = 0
+texture_repeat = false

@@ -116,6 +116,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lf53f")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"default",
@@ -129,3 +132,5 @@ double_sided = false
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hcff6")
 autoplay = "default"
+frame = 16
+frame_progress = 1.0

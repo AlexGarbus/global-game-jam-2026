@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://wla5w7he7vqw"]
+
+[ext_resource type="PackedScene" uid="uid://bcn60b0jdojjf" path="res://entities/enemies/horse/horse.glb" id="1_yxl5m"]
+
+[node name="Horse" unique_id=27185714 instance=ExtResource("1_yxl5m")]

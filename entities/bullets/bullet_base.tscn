@@ -8,13 +8,13 @@ shading_mode = 0
 
 [sub_resource type="SphereMesh" id="SphereMesh_k76ui"]
 material = SubResource("StandardMaterial3D_543ky")
-radius = 0.1
-height = 0.2
+radius = 0.2
+height = 0.4
 radial_segments = 4
 rings = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxs84"]
-radius = 0.1
+radius = 0.2
 
 [node name="Bullet" type="Node3D" unique_id=870228558]
 script = ExtResource("1_d7d72")

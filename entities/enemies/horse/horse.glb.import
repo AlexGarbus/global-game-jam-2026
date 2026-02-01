@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c877n6ydhad8p"
-path="res://.godot/imported/player.glb-4e49271e5284378b42e31d34f42f492e.scn"
+uid="uid://bcn60b0jdojjf"
+path="res://.godot/imported/horse.glb-7516971ec9d78272439da5dc1821f082.scn"
 
 [deps]
 
-source_file="res://entities/player/player.glb"
-dest_files=["res://.godot/imported/player.glb-4e49271e5284378b42e31d34f42f492e.scn"]
+source_file="res://entities/enemies/horse/horse.glb"
+dest_files=["res://.godot/imported/horse.glb-7516971ec9d78272439da5dc1821f082.scn"]
 
 [params]
 
 nodes/root_type=""
-nodes/root_name=""
+nodes/root_name="Horse"
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -41,8 +41,15 @@ _subresources={
 "materials": {
 "material_0": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://entities/player/material_0.tres",
-"use_external/path": "uid://bmyighf2bnr4e"
+"use_external/fallback_path": "res://entities/enemies/horse/material_0.tres",
+"use_external/path": "uid://b1e211qg2ny4p"
+}
+},
+"nodes": {
+"PATH:Horse": {
+"generate/physics": true,
+"physics/layer": 9,
+"physics/shape_type": 1
 }
 }
 }

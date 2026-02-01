@@ -51,6 +51,7 @@ light_energy = 1.0
 
 [node name="Player" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="0" unique_id=2007518119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 75)
+knockback_correction = 0.5
 
 [node name="Goal" type="Area3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=219581411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 5, -10)
@@ -61,7 +62,7 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Goal" index="0" unique_id=2073914165]
 shape = SubResource("SphereShape3D_tbvuv")
 
-[node name="HospitalInterior" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=761646837 instance=ExtResource("3_l1wdh")]
+[node name="HospitalInterior" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=645499515 instance=ExtResource("3_l1wdh")]
 
 [node name="Lasers" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="3" unique_id=651639087]
 

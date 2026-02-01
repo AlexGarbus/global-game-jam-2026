@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://bmyighf2bnr4e"]
 
-[ext_resource type="Texture2D" uid="uid://ov5uvactiux0" path="res://entities/player/player_0.png" id="1_dl0gn"]
+[ext_resource type="Texture2D" uid="uid://ov5uvactiux0" path="res://entities/player/models/player_0.png" id="1_dl0gn"]
 
 [resource]
 resource_name = "material_0"
