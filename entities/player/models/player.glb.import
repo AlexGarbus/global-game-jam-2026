@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "material_0": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://entities/player/models/material_0.tres",
+"use_external/fallback_path": "res://entities/player/models/player_material.tres",
 "use_external/path": "uid://bmyighf2bnr4e"
 }
 }

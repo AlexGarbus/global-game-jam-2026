@@ -1,6 +1,8 @@
 extends Node
 
 
+@export var _player: RigidBody3D
+
 var _failures: Array[AudioStreamPlayer]
 
 @onready var _car := $Car
@@ -13,6 +15,21 @@ var _failures: Array[AudioStreamPlayer]
 
 func _ready() -> void:
 	_failures = [$Failure1, $Failure2]
+
+
+func _play_collision_audio(body: Node) -> void:
+	var children := body.find_children("*", "EnemyStats")
+	if children.is_empty():
+		_failures.pick_random().play()
+		return
+	var enemy_stats := body.find_children("*", "EnemyStats")[0] as EnemyStats
+	match enemy_stats.type:
+		Enum.EnemyType.CAR:
+			_car.play()
+		Enum.EnemyType.HORSE:
+			_horse.play()
+		Enum.EnemyType.JET:
+			_jet.play()
 
 
 func _on_health_reached_zero() -> void:
@@ -29,15 +46,9 @@ func _on_player_super_changed(value: bool) -> void:
 
 
 func _on_damage_area_3d_body_entered(body: Node3D) -> void:
-	var children := body.find_children("*", "EnemyStats")
-	if children.is_empty():
-		_failures.pick_random().play()
-		return
-	var enemy_stats := body.find_children("*", "EnemyStats")[0] as EnemyStats
-	match enemy_stats.type:
-		Enum.EnemyType.CAR:
-			_car.play()
-		Enum.EnemyType.HORSE:
-			_horse.play()
-		Enum.EnemyType.JET:
-			_jet.play()
+	_play_collision_audio(body)
+
+
+func _on_player_body_entered(body: Node) -> void:
+	if not _player.custom_integrator:
+		_play_collision_audio(body)

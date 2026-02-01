@@ -46,6 +46,8 @@ collision_mask = 137
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_wvtmh")
 custom_integrator = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_abrql")
 knockback_correction = 3.0
 _max_linear_speed = 13.0
@@ -61,7 +63,7 @@ shape = SubResource("BoxShape3D_symyc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.071154326, 0.080728985)
 shape = SubResource("SphereShape3D_wvtmh")
 
-[node name="Mesh" parent="." unique_id=1940571557 instance=ExtResource("2_wvtmh")]
+[node name="Mesh" parent="." unique_id=1363163529 instance=ExtResource("2_wvtmh")]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 0, 0.5)
 
 [node name="Mask" parent="Mesh" unique_id=82053084 instance=ExtResource("3_a1qjk")]
@@ -134,8 +136,9 @@ pixel_size = 0.015625
 autoplay = ""
 frame_progress = 0.9372874
 
-[node name="Audio" type="Node" parent="." unique_id=381242895]
+[node name="Audio" type="Node" parent="." unique_id=381242895 node_paths=PackedStringArray("_player")]
 script = ExtResource("12_yqrof")
+_player = NodePath("..")
 
 [node name="Failure1" type="AudioStreamPlayer" parent="Audio" unique_id=84468142]
 stream = ExtResource("15_we0b7")
