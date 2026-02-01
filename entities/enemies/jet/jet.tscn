@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dov8d0w5s24fg"]
+
+[ext_resource type="PackedScene" uid="uid://dub87b153p5cb" path="res://entities/enemies/jet/jet.glb" id="1_1p522"]
+[ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="2_w61l4"]
+[ext_resource type="Script" uid="uid://bcfvsp3xvc277" path="res://entities/enemies/enemy_stats.gd" id="2_xurdr"]
+[ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="3_4isyr"]
+[ext_resource type="Script" uid="uid://bvprpjmdwf8rn" path="res://common/nodes/defeat_changer.gd" id="4_1rwyc"]
+[ext_resource type="PackedScene" uid="uid://6ysk5v55r5u7" path="res://entities/drop/drop.tscn" id="5_xurdr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rwyc"]
+size = Vector3(4.1, 1.1, 4.1)
+
+[node name="Jet" unique_id=1772259610 instance=ExtResource("1_1p522")]
+
+[node name="EnemyStats" type="Node" parent="Jet/StaticBody3D" parent_id_path=PackedInt32Array(415575896) index="1" unique_id=446186121]
+script = ExtResource("2_xurdr")
+type = 2
+metadata/_custom_type_script = "uid://bcfvsp3xvc277"
+
+[node name="DamageArea3D" type="Area3D" parent="." index="1" unique_id=483582881 node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_w61l4")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://c58ps3xr345lv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea3D" index="0" unique_id=905212827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1rwyc")
+
+[node name="Health" type="Node" parent="." index="2" unique_id=1063268196]
+script = ExtResource("3_4isyr")
+max_value = 5
+metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
+
+[node name="DefeatChanger" type="Node" parent="." index="3" unique_id=700944523 node_paths=PackedStringArray("health", "target")]
+script = ExtResource("4_1rwyc")
+health = NodePath("../Health")
+target = NodePath("..")
+scene = ExtResource("5_xurdr")
+metadata/_custom_type_script = "uid://bvprpjmdwf8rn"

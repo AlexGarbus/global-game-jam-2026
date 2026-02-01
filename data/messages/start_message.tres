@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Message" format=3 uid="uid://xhqilq8p0vnb"]
+
+[ext_resource type="Script" uid="uid://c3h3shu4wsnpo" path="res://data/messages/message.gd" id="1_q1lc6"]
+
+[resource]
+script = ExtResource("1_q1lc6")
+text = "It's super pregnancy time!
+Get to the hospital!"
+metadata/_custom_type_script = "uid://c3h3shu4wsnpo"

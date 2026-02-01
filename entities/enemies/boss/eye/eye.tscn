@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cxyhf4or0gdbl"]
+
+[ext_resource type="Script" uid="uid://5vhu0fombpnq" path="res://entities/enemies/boss/eye/eye.gd" id="1_7wlhp"]
+[ext_resource type="Texture2D" uid="uid://ccplmfiqrw67" path="res://entities/enemies/boss/eye/eye.tres" id="1_bkkiy"]
+[ext_resource type="Script" uid="uid://da2ekqxdmi875" path="res://common/nodes/3d/spawner_3d.gd" id="2_avktx"]
+[ext_resource type="PackedScene" uid="uid://fxgjmjsnvkjf" path="res://entities/bullets/bullet_enemy.tscn" id="3_7wlhp"]
+
+[node name="Eye" type="Node3D" unique_id=2034624737]
+script = ExtResource("1_7wlhp")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=615579889]
+pixel_size = 0.015625
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_bkkiy")
+
+[node name="BulletSpawner" type="Node3D" parent="." unique_id=1981274497]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.5)
+script = ExtResource("2_avktx")
+scene = ExtResource("3_7wlhp")
+spawn_path = NodePath("..")
+spawn_top_level = true
+metadata/_custom_type_script = "uid://da2ekqxdmi875"
+
+[node name="BulletTimer" type="Timer" parent="." unique_id=204706936]
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

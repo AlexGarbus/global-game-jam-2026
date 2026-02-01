@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dexr0l8q8qvwg"]
+
+[ext_resource type="PackedScene" uid="uid://ohxcxhi3hqu0" path="res://main/scenes/levels/level_base.tscn" id="1_64n85"]
+[ext_resource type="Script" uid="uid://dmwbskve5lrly" path="res://data/level_advance_conditions/area_enter_condition.gd" id="2_y5qq6"]
+[ext_resource type="PackedScene" uid="uid://d34x6k7o43wxg" path="res://environments/hospital_interior/hospital_interior.glb" id="3_l1wdh"]
+[ext_resource type="PackedScene" uid="uid://cjwrjfn67aqc6" path="res://entities/enemies/laser/laser.tscn" id="4_tbvuv"]
+
+[sub_resource type="Resource" id="Resource_l1wdh"]
+script = ExtResource("2_y5qq6")
+area_path = NodePath("PixelatedViewportContainer/SubViewport/Goal")
+metadata/_custom_type_script = "uid://dmwbskve5lrly"
+
+[sub_resource type="Gradient" id="Gradient_y5qq6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.33333334, 0.33333334, 0.6666667, 1, 0.33333334, 0.6666667, 0.33333334, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l1wdh"]
+gradient = SubResource("Gradient_y5qq6")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tbvuv"]
+panorama = SubResource("GradientTexture2D_l1wdh")
+filter = false
+
+[sub_resource type="Sky" id="Sky_3argk"]
+sky_material = SubResource("PanoramaSkyMaterial_tbvuv")
+
+[sub_resource type="Environment" id="Environment_iquyg"]
+sky = SubResource("Sky_3argk")
+ambient_light_source = 2
+ambient_light_color = Color(0.6039216, 0.6039216, 0.5019608, 1)
+reflected_light_source = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tbvuv"]
+radius = 10.0
+
+[node name="Level" unique_id=2067472884 instance=ExtResource("1_64n85")]
+advance_condition = SubResource("Resource_l1wdh")
+
+[node name="Inventory" parent="." index="0" unique_id=259499367]
+_start_with_gems = true
+
+[node name="WorldEnvironment" parent="." index="1" unique_id=2142308483]
+environment = SubResource("Environment_iquyg")
+
+[node name="DirectionalLight3D" parent="." index="2" unique_id=753907781]
+light_energy = 1.0
+
+[node name="Player" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="0" unique_id=2007518119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 75)
+knockback_correction = 0.5
+
+[node name="Goal" type="Area3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=219581411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 5, -10)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Goal" index="0" unique_id=2073914165]
+shape = SubResource("SphereShape3D_tbvuv")
+
+[node name="HospitalInterior" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=645499515 instance=ExtResource("3_l1wdh")]
+
+[node name="Lasers" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="3" unique_id=651639087]
+
+[node name="Laser" parent="PixelatedViewportContainer/SubViewport/Lasers" index="0" unique_id=2068042563 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(0.70710677, 0.70710677, 0, 3.090862e-08, -3.090862e-08, -1, -0.70710677, 0.70710677, -4.371139e-08, 6, 2.5, -75.766)
+
+[node name="Laser2" parent="PixelatedViewportContainer/SubViewport/Lasers" index="1" unique_id=676847660 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(0.70710677, 0.70710677, 0, 3.090862e-08, -3.090862e-08, -1, -0.70710677, 0.70710677, -4.371139e-08, 6, 5, -75.766)
+
+[node name="Laser3" parent="PixelatedViewportContainer/SubViewport/Lasers" index="2" unique_id=1982861371 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(0.70710677, 0.70710677, 0, 3.090862e-08, -3.090862e-08, -1, -0.70710677, 0.70710677, -4.371139e-08, 6, 7.5, -75.766)
+
+[node name="Laser4" parent="PixelatedViewportContainer/SubViewport/Lasers" index="3" unique_id=1555929037 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -17, 5, -75)
+
+[node name="Laser5" parent="PixelatedViewportContainer/SubViewport/Lasers" index="4" unique_id=952310029 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 5, -75)
+
+[node name="Laser6" parent="PixelatedViewportContainer/SubViewport/Lasers" index="5" unique_id=938019157 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -37, 5, -75)
+
+[node name="Laser7" parent="PixelatedViewportContainer/SubViewport/Lasers" index="6" unique_id=1211341178 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -37, 5, -75)
+
+[node name="Laser8" parent="PixelatedViewportContainer/SubViewport/Lasers" index="7" unique_id=1260289099 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -47, 5, -75)
+
+[node name="Laser9" parent="PixelatedViewportContainer/SubViewport/Lasers" index="8" unique_id=1290495531 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, -47, 5, -75)
+
+[node name="Laser10" parent="PixelatedViewportContainer/SubViewport/Lasers" index="9" unique_id=1577581531 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -71)
+
+[node name="Laser11" parent="PixelatedViewportContainer/SubViewport/Lasers" index="10" unique_id=1035647968 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -72)
+
+[node name="Laser12" parent="PixelatedViewportContainer/SubViewport/Lasers" index="11" unique_id=1955736044 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -79)
+
+[node name="Laser13" parent="PixelatedViewportContainer/SubViewport/Lasers" index="12" unique_id=1145821399 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -78)
+
+[node name="Laser14" parent="PixelatedViewportContainer/SubViewport/Lasers" index="13" unique_id=308725369 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -73)
+
+[node name="Laser15" parent="PixelatedViewportContainer/SubViewport/Lasers" index="14" unique_id=175084254 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -77)

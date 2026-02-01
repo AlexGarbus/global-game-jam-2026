@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6blm8exk82q2"]
+
+[ext_resource type="Texture2D" uid="uid://cmm33vycy8801" path="res://entities/enemies/car/car_0.png" id="1_2obfm"]
+
+[resource]
+resource_name = "material_0"
+shading_mode = 2
+albedo_texture = ExtResource("1_2obfm")
+texture_filter = 0
+texture_repeat = false

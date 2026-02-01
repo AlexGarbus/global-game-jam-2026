@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ohxcxhi3hqu0"]
+
+[ext_resource type="Script" uid="uid://c5ue87wgvptwu" path="res://main/scenes/levels/level_scene.gd" id="1_5nclj"]
+[ext_resource type="PackedScene" uid="uid://34asvf5u2d7t" path="res://entities/player/player.tscn" id="1_72lju"]
+[ext_resource type="PackedScene" uid="uid://x7gpm0ttcucv" path="res://user_interface/heads_up_display/heads_up_display.tscn" id="2_nmr65"]
+[ext_resource type="PackedScene" uid="uid://cwymdjqwhe33l" path="res://common/scenes/pixelated_viewport_container.tscn" id="2_vmt1o"]
+[ext_resource type="Resource" uid="uid://o1b54dx7fngp" path="res://data/messages/super_message.tres" id="3_462q3"]
+[ext_resource type="PackedScene" uid="uid://coqqhypit4pw3" path="res://user_interface/game_over/game_over.tscn" id="3_qutwn"]
+[ext_resource type="Script" uid="uid://kgme8k6738s5" path="res://data/inventory.gd" id="6_qutwn"]
+
+[node name="Level" type="Node" unique_id=2067472884]
+script = ExtResource("1_5nclj")
+
+[node name="Inventory" type="Node" parent="." unique_id=259499367]
+script = ExtResource("6_qutwn")
+_all_collected_message = ExtResource("3_462q3")
+metadata/_custom_type_script = "uid://kgme8k6738s5"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2142308483]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=753907781]
+transform = Transform3D(0.5, 0.7071068, -0.49999997, 0.7071068, -5.1982045e-08, 0.70710677, 0.49999997, -0.70710677, -0.50000006, 0, 0, 0)
+light_energy = 0.5
+
+[node name="PixelatedViewportContainer" parent="." unique_id=1629097868 instance=ExtResource("2_vmt1o")]
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="PixelatedViewportContainer" unique_id=451725261]
+handle_input_locally = false
+size = Vector2i(426, 240)
+render_target_update_mode = 4
+
+[node name="Player" parent="PixelatedViewportContainer/SubViewport" unique_id=2007518119 node_paths=PackedStringArray("inventory") instance=ExtResource("1_72lju")]
+inventory = NodePath("../../../Inventory")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=19965248]
+
+[node name="HeadsUpDisplay" parent="CanvasLayer" unique_id=257419253 node_paths=PackedStringArray("_player") instance=ExtResource("2_nmr65")]
+_player = NodePath("../../PixelatedViewportContainer/SubViewport/Player")
+
+[node name="GameOver" parent="CanvasLayer" unique_id=213550801 node_paths=PackedStringArray("_player") instance=ExtResource("3_qutwn")]
+visible = false
+_player = NodePath("../../PixelatedViewportContainer/SubViewport/Player")
+
+[connection signal="animation_finished" from="CanvasLayer/GameOver" to="." method="_on_game_over_animation_finished"]

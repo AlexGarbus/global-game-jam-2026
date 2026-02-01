@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://djjty46v1dq48"]
+
+[ext_resource type="PackedScene" uid="uid://cpvtj3dweiv07" path="res://entities/enemies/boss/wing/boss_wing.glb" id="1_0clml"]
+[ext_resource type="PackedScene" uid="uid://cxyhf4or0gdbl" path="res://entities/enemies/boss/eye/eye.tscn" id="2_ha5as"]
+[ext_resource type="Script" uid="uid://dls6ti1x2q5gs" path="res://common/nodes/3d/attack_area_3d.gd" id="3_ha5as"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fe4dg"]
+points = PackedVector3Array(0.6165451, 2.2671108, 0.0625, -0.7345698, 2.1112313, -0.02176132, 0.22325207, -0.021769762, -0.02176132, -0.19799677, 0.068143815, 0.0625, 0.7457794, 2.2418845, -0.02176132, -0.03786669, 2.7647698, -0.02176132, 0.20628731, 0.08683024, 0.061916105, -0.21204247, -0.021769762, -0.02176132, -0.03506129, 2.6748562, 0.0625, -0.6868032, 2.185715, 0.0625, 0.6980128, 2.185715, 0.0625, -0.6038655, 2.3725376, -0.02176132, 0.049076296, 2.7647698, -0.02176132, 0.7457794, 2.1551461, -0.02176132, 0.046270896, 2.6748562, 0.0625, -0.25551397, 0.10888338, -0.02176132, -0.11652903, 2.6340308, 0.0625, 0.31033996, 2.5902019, -0.02176132, -0.7345698, 2.2418845, -0.02176132, -0.5645338, 2.3079364, 0.0625, -0.12495458, 2.721128, -0.02176132, 0.6586915, 2.3288956, -0.02176132, 0.29067412, 2.5115538, 0.0625, 0.26672357, 0.1525253, -0.02176132)
+
+[node name="BossWing" unique_id=2141604357 instance=ExtResource("1_0clml")]
+
+[node name="Eye" parent="." index="1" unique_id=2034624737 instance=ExtResource("2_ha5as")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.95, -0.001)
+
+[node name="AttackArea3D" type="Area3D" parent="." index="2" unique_id=1761396237]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_ha5as")
+metadata/_custom_type_script = "uid://dls6ti1x2q5gs"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea3D" index="0" unique_id=1747419087]
+shape = SubResource("ConvexPolygonShape3D_fe4dg")

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bop5ik5j8a1v7"]
+
+[ext_resource type="PackedScene" uid="uid://djjty46v1dq48" path="res://entities/enemies/boss/wing/wing.tscn" id="1_cjv81"]
+[ext_resource type="Script" uid="uid://tge2s7g544n8" path="res://entities/enemies/boss/wing_group/wing_group.gd" id="1_rmmqm"]
+
+[node name="BossWingGroup" type="Node3D" unique_id=1117869930 node_paths=PackedStringArray("_wings")]
+script = ExtResource("1_rmmqm")
+_wings = [NodePath("BossWing"), NodePath("BossWing2"), NodePath("BossWing3"), NodePath("BossWing4"), NodePath("BossWing5"), NodePath("BossWing6")]
+
+[node name="BossWing" parent="." unique_id=2141604357 instance=ExtResource("1_cjv81")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.5, 0, 0)
+
+[node name="BossWing2" parent="." unique_id=184996889 instance=ExtResource("1_cjv81")]
+transform = Transform3D(0.7071067, -0.7071068, 0, 0.7071068, 0.7071067, 0, 0, 0, 1, -3.0606601, 1.0606601, 0)
+
+[node name="BossWing3" parent="." unique_id=2028895484 instance=ExtResource("1_cjv81")]
+transform = Transform3D(-0.7071069, -0.70710665, 0, 0.70710665, -0.7071069, 0, 0, 0, 1, -3.0606601, -1.0606602, 0)
+
+[node name="BossWing4" parent="." unique_id=1948627171 instance=ExtResource("1_cjv81")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5, 0, 0)
+
+[node name="BossWing5" parent="." unique_id=304064700 instance=ExtResource("1_cjv81")]
+transform = Transform3D(-0.70710677, 0.70710677, 0, -0.70710677, -0.70710677, 0, 0, 0, 1, 3.061, -1.0606601, 0)
+
+[node name="BossWing6" parent="." unique_id=729431148 instance=ExtResource("1_cjv81")]
+transform = Transform3D(0.7071068, 0.7071067, 0, -0.7071067, 0.7071068, 0, 0, 0, 1, 3.061, 1.0606602, 0)

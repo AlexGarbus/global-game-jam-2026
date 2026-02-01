@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://bx67ifljxw1cr"]
+
+[ext_resource type="Texture2D" uid="uid://djxkh1clxrfh8" path="res://entities/effects/explosion/explosion.png" id="1_sau57"]
+[ext_resource type="AudioStream" uid="uid://dn1f3s6vetmm5" path="res://entities/effects/explosion/sound.wav" id="2_84h3v"]
+[ext_resource type="Script" uid="uid://dp0t3rgqpd2d0" path="res://entities/effects/explosion/explosion.gd" id="2_jp2bf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84h3v"]
+atlas = ExtResource("1_sau57")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp2bf"]
+atlas = ExtResource("1_sau57")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okur5"]
+atlas = ExtResource("1_sau57")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11rc6"]
+atlas = ExtResource("1_sau57")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oe71"]
+atlas = ExtResource("1_sau57")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pybbp"]
+atlas = ExtResource("1_sau57")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpqyu"]
+atlas = ExtResource("1_sau57")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg1bb"]
+atlas = ExtResource("1_sau57")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wty8"]
+atlas = ExtResource("1_sau57")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx3sr"]
+atlas = ExtResource("1_sau57")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg14l"]
+atlas = ExtResource("1_sau57")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok0cw"]
+atlas = ExtResource("1_sau57")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg6w1"]
+atlas = ExtResource("1_sau57")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufsbc"]
+atlas = ExtResource("1_sau57")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l57s"]
+atlas = ExtResource("1_sau57")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf53f"]
+atlas = ExtResource("1_sau57")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hcff6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84h3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp2bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okur5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11rc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oe71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pybbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpqyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg1bb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wty8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx3sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg14l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok0cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg6w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufsbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l57s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf53f")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Explosion" type="AnimatedSprite3D" unique_id=729686766]
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_hcff6")
+autoplay = "default"
+frame = 16
+frame_progress = 1.0
+script = ExtResource("2_jp2bf")
+
+[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=62898014]
+stream = ExtResource("2_84h3v")
+
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]

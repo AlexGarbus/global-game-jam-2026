@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c6w87asl6twpe"]
+
+[ext_resource type="Texture2D" uid="uid://xgh3dh87jkoh" path="res://entities/enemies/boss/pregnant_boss_tex.png" id="1_1pfw4"]
+
+[resource]
+shading_mode = 2
+albedo_texture = ExtResource("1_1pfw4")
+texture_filter = 2

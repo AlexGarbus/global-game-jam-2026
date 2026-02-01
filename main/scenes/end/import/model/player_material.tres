@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://go44ro7nx67p"]
+
+[ext_resource type="Texture2D" uid="uid://cx5gptj1qttl8" path="res://main/scenes/end/import/model/pregnant_end_tex.png" id="1_irqcs"]
+
+[resource]
+albedo_texture = ExtResource("1_irqcs")
+texture_filter = 0

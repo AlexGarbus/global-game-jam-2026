@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://6ysk5v55r5u7"]
+
+[ext_resource type="Script" uid="uid://cujtn3mgiyxlj" path="res://entities/drop/drop.gd" id="1_g443x"]
+[ext_resource type="PackedScene" uid="uid://bx67ifljxw1cr" path="res://entities/effects/explosion/explosion.tscn" id="2_v5km4"]
+[ext_resource type="Script" uid="uid://da2ekqxdmi875" path="res://common/nodes/3d/spawner_3d.gd" id="3_2cw3d"]
+[ext_resource type="PackedScene" uid="uid://bw0gq6q28h827" path="res://entities/pickups/health/pickup_health.tscn" id="4_wd7aq"]
+
+[node name="Drop" type="Node3D" unique_id=519329919]
+script = ExtResource("1_g443x")
+
+[node name="Explosion" parent="." unique_id=729686766 instance=ExtResource("2_v5km4")]
+
+[node name="Spawner" type="Node3D" parent="." unique_id=1119768845]
+script = ExtResource("3_2cw3d")
+scene = ExtResource("4_wd7aq")
+spawn_path = NodePath("..")
+spawn_top_level = true
+metadata/_custom_type_script = "uid://da2ekqxdmi875"
+
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

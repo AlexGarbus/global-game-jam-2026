@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Message" format=3 uid="uid://bgw5ifivsyebf"]
+
+[ext_resource type="Script" uid="uid://c3h3shu4wsnpo" path="res://data/messages/message.gd" id="1_pnqdq"]
+
+[resource]
+script = ExtResource("1_pnqdq")
+text = "You are not yet super pregnant!
+You must first collect the 7 pregnant emeralds!"
+metadata/_custom_type_script = "uid://c3h3shu4wsnpo"

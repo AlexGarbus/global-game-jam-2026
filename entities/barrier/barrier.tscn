@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cvy34wk4f62bl"]
+
+[ext_resource type="Script" uid="uid://dij27nodkbvn" path="res://entities/barrier/barrier.gd" id="1_fe2b7"]
+[ext_resource type="Resource" uid="uid://bgw5ifivsyebf" path="res://data/messages/barrier_message.tres" id="2_t0ejm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_db7ii"]
+radius = 19.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_db7ii"]
+transparency = 1
+shading_mode = 2
+albedo_color = Color(1, 1, 0.6666667, 0.49803922)
+
+[sub_resource type="SphereMesh" id="SphereMesh_db7ii"]
+material = SubResource("StandardMaterial3D_db7ii")
+radius = 20.0
+height = 20.0
+radial_segments = 10
+rings = 8
+is_hemisphere = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fe2b7"]
+radius = 19.1
+
+[node name="Barrier" type="StaticBody3D" unique_id=805690231]
+collision_mask = 0
+script = ExtResource("1_fe2b7")
+message = ExtResource("2_t0ejm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1813153261]
+shape = SubResource("SphereShape3D_db7ii")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1536572936]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_db7ii")
+
+[node name="PlayerDetection" type="Area3D" parent="." unique_id=470584979]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection" unique_id=454575422]
+shape = SubResource("SphereShape3D_fe2b7")
+debug_color = Color(0.2090756, 0.6417364, 1.1551381e-06, 0.41960785)
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bketfgk2ffpp2"]
+
+[ext_resource type="PackedScene" uid="uid://41sfj5pjiold" path="res://entities/enemies/car/car.glb" id="1_drmg0"]
+[ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="2_gbmc4"]
+[ext_resource type="Script" uid="uid://bcfvsp3xvc277" path="res://entities/enemies/enemy_stats.gd" id="2_xtdl6"]
+[ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="3_cys8v"]
+[ext_resource type="Script" uid="uid://bvprpjmdwf8rn" path="res://common/nodes/defeat_changer.gd" id="4_cys8v"]
+[ext_resource type="PackedScene" uid="uid://6ysk5v55r5u7" path="res://entities/drop/drop.tscn" id="5_xtdl6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtdl6"]
+size = Vector3(2.5, 1, 4.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ua3rg"]
+size = Vector3(2.5, 1, 2.5)
+
+[node name="Car" unique_id=1586012344 instance=ExtResource("1_drmg0")]
+
+[node name="EnemyStats" type="Node" parent="Car/StaticBody3D" parent_id_path=PackedInt32Array(535568357) index="1" unique_id=208540500]
+script = ExtResource("2_xtdl6")
+metadata/_custom_type_script = "uid://bcfvsp3xvc277"
+
+[node name="DamageArea3D" type="Area3D" parent="." index="1" unique_id=781192334 node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_gbmc4")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://c58ps3xr345lv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea3D" index="0" unique_id=2006183973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_xtdl6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DamageArea3D" index="1" unique_id=782487783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_ua3rg")
+
+[node name="Health" type="Node" parent="." index="2" unique_id=204930204]
+script = ExtResource("3_cys8v")
+max_value = 5
+metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
+
+[node name="DefeatChanger" type="Node" parent="." index="3" unique_id=1182017784 node_paths=PackedStringArray("health", "target")]
+script = ExtResource("4_cys8v")
+health = NodePath("../Health")
+target = NodePath("..")
+scene = ExtResource("5_xtdl6")
+metadata/_custom_type_script = "uid://bvprpjmdwf8rn"

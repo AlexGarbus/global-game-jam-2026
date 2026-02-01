@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cjwrjfn67aqc6"]
+
+[ext_resource type="Script" uid="uid://dls6ti1x2q5gs" path="res://common/nodes/3d/attack_area_3d.gd" id="1_v2skm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4djq"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4h8q"]
+material = SubResource("StandardMaterial3D_s4djq")
+size = Vector3(0.25, 20, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_au43r"]
+size = Vector3(0.2, 20, 0.2)
+
+[node name="Laser" type="Area3D" unique_id=2068042563]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_v2skm")
+metadata/_custom_type_script = "uid://dls6ti1x2q5gs"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1084252437]
+mesh = SubResource("BoxMesh_g4h8q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=706103414]
+shape = SubResource("BoxShape3D_au43r")

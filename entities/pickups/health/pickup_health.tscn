@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bw0gq6q28h827"]
+
+[ext_resource type="Script" uid="uid://blgsv2yonpekb" path="res://entities/pickups/pickup_area.gd" id="1_pd2u6"]
+[ext_resource type="Script" uid="uid://epf0qs8x3p16" path="res://data/pickup_effects/pickup_effect.gd" id="2_jen6u"]
+[ext_resource type="Script" uid="uid://dk46doo5boadv" path="res://data/pickup_effects/health_pickup_effect.gd" id="3_x70pa"]
+[ext_resource type="Texture2D" uid="uid://b7de7bem2ka76" path="res://entities/pickups/health/health.png" id="4_x70pa"]
+
+[sub_resource type="Resource" id="Resource_jf7fy"]
+script = ExtResource("3_x70pa")
+delta = 2
+metadata/_custom_type_script = "uid://dk46doo5boadv"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hpito"]
+radius = 1.0
+
+[node name="PickupHealth" type="Area3D" unique_id=57118570]
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("1_pd2u6")
+effects = Array[ExtResource("2_jen6u")]([SubResource("Resource_jf7fy")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=438998055]
+shape = SubResource("SphereShape3D_hpito")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=604677716]
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("4_x70pa")

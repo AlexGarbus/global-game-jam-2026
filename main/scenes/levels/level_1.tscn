@@ -1,0 +1,748 @@
+[gd_scene format=3 uid="uid://bsia3qptd8ifs"]
+
+[ext_resource type="PackedScene" uid="uid://ohxcxhi3hqu0" path="res://main/scenes/levels/level_base.tscn" id="1_6i8ql"]
+[ext_resource type="PackedScene" uid="uid://cvy34wk4f62bl" path="res://entities/barrier/barrier.tscn" id="2_eiw0b"]
+[ext_resource type="PackedScene" uid="uid://dorx0bsx24cte" path="res://entities/buildings/hospital.tscn" id="2_m5sr4"]
+[ext_resource type="Script" uid="uid://dmwbskve5lrly" path="res://data/level_advance_conditions/area_enter_condition.gd" id="2_twpts"]
+[ext_resource type="PackedScene" uid="uid://cl4pn5vjavr5" path="res://entities/buildings/generic_sm.tscn" id="3_dt5a4"]
+[ext_resource type="PackedScene" uid="uid://dism8t8vmbsr7" path="res://entities/buildings/generic_lg.tscn" id="4_eiw0b"]
+[ext_resource type="PackedScene" uid="uid://birw6yo18gfhc" path="res://entities/buildings/generic_md.tscn" id="5_iiir4"]
+[ext_resource type="PackedScene" uid="uid://dqbqkey8jpx8d" path="res://entities/pickups/gems/gem.tscn" id="6_eiw0b"]
+[ext_resource type="Script" uid="uid://epf0qs8x3p16" path="res://data/pickup_effects/pickup_effect.gd" id="8_i3r2j"]
+[ext_resource type="Script" uid="uid://but8ckxt3e7w6" path="res://data/pickup_effects/gem_pickup_effect.gd" id="9_twpts"]
+[ext_resource type="PackedScene" uid="uid://owjheotom162" path="res://entities/buildings/stadium/stadium.tscn" id="11_50pxj"]
+[ext_resource type="Script" uid="uid://l7l6pvhnm37e" path="res://common/nodes/3d/auto_path_follow_3d.gd" id="11_be6o3"]
+[ext_resource type="PackedScene" uid="uid://bketfgk2ffpp2" path="res://entities/enemies/car/car.tscn" id="12_8xx5y"]
+[ext_resource type="PackedScene" uid="uid://c4ewd4j3s2pb0" path="res://entities/buildings/gate/gate.tscn" id="12_80ana"]
+[ext_resource type="PackedScene" uid="uid://dov8d0w5s24fg" path="res://entities/enemies/jet/jet.tscn" id="13_8xx5y"]
+[ext_resource type="PackedScene" uid="uid://wla5w7he7vqw" path="res://entities/enemies/horse/horse.tscn" id="16_at1ct"]
+[ext_resource type="Resource" uid="uid://xhqilq8p0vnb" path="res://data/messages/start_message.tres" id="17_46lcd"]
+
+[sub_resource type="Resource" id="Resource_uaal5"]
+script = ExtResource("2_twpts")
+area_path = NodePath("PixelatedViewportContainer/SubViewport/Buildings/Hospital/Goal")
+metadata/_custom_type_script = "uid://dmwbskve5lrly"
+
+[sub_resource type="Gradient" id="Gradient_twpts"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.33333334, 0.33333334, 0.6666667, 1, 0.33333334, 0.6666667, 0.33333334, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_myl60"]
+gradient = SubResource("Gradient_twpts")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_be6o3"]
+panorama = SubResource("GradientTexture2D_myl60")
+filter = false
+
+[sub_resource type="Sky" id="Sky_8xx5y"]
+sky_material = SubResource("PanoramaSkyMaterial_be6o3")
+
+[sub_resource type="Environment" id="Environment_50pxj"]
+background_mode = 2
+sky = SubResource("Sky_8xx5y")
+ambient_light_source = 2
+ambient_light_color = Color(0.6039216, 0.6039216, 0.5019608, 1)
+reflected_light_source = 1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6i8ql"]
+
+[sub_resource type="Resource" id="Resource_myl60"]
+script = ExtResource("9_twpts")
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_be6o3"]
+script = ExtResource("9_twpts")
+gem_type = 1
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_8xx5y"]
+script = ExtResource("9_twpts")
+gem_type = 2
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_50pxj"]
+script = ExtResource("9_twpts")
+gem_type = 3
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_80ana"]
+script = ExtResource("9_twpts")
+gem_type = 4
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_at1ct"]
+script = ExtResource("9_twpts")
+gem_type = 5
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="Resource" id="Resource_46lcd"]
+script = ExtResource("9_twpts")
+gem_type = 6
+metadata/_custom_type_script = "uid://but8ckxt3e7w6"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yi4o2"]
+radius = 10.0
+
+[sub_resource type="Curve3D" id="Curve3D_50pxj"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -20, 0, -20.272, 0, 0, 0, 0, 0, 0, 20, 0, -20, 0, 0, 0, 0, 0, 0, 20, 0, 20, 0, 0, 0, 0, 0, 0, -20, 0, 20),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_be6o3"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -20, 0, -30, 0, 0, 0, 0, 0, 0, -20, 0, 30, 0, 0, 0, 0, 0, 0, 20, 0, 30, 0, 0, 0, 0, 0, 0, 20, 0, -30),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_8xx5y"]
+closed = true
+_data = {
+"points": PackedVector3Array(-1, 0, 1, 1, 0, -1, -30, 0, 170, -1, 0, -1, 1, 0, 1, 30, 0, 170, 1, 0, -1, -1, 0, 1, 30, 0, 190, 1, 0, 1, -1, 0, -1, -30, 0, 190),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_80ana"]
+closed = true
+_data = {
+"points": PackedVector3Array(-1, 0, 1, 1, 0, -1, -30, 0, 170, -1, 0, -1, 1, 0, 1, 30, 0, 170, 1, 0, -1, -1, 0, 1, 30, 0, 190, 1, 0, 1, -1, 0, -1, -30, 0, 190),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_at1ct"]
+closed = true
+_data = {
+"points": PackedVector3Array(-13, 0, 0, 13, 0, 0, 90, 0, -112.5, 0, 0, -4, 0, 0, 4, 105, 0, -100, 13, 0, 0, -13, 0, 0, 90, 0, -87.5, 0, 0, 4, 0, 0, -4, 75, 0, -100),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_46lcd"]
+closed = true
+_data = {
+"points": PackedVector3Array(-5, 0, 5, 5, 0, -5, 75, 0, -111, -5, 0, -5, 5, 0, 5, 105, 0, -111, 5, 0, -5, -5, 0, 5, 105, 0, -89, 5, 0, 5, -5, 0, -5, 75, 0, -89),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_uaal5"]
+closed = true
+_data = {
+"points": PackedVector3Array(-5, 0, 5, 5, 0, -5, 76, 0, -110, -5, 0, -5, 5, 0, 5, 104, 0, -110, 5, 0, -5, -5, 0, 5, 104, 0, -90, 5, 0, 5, -5, 0, -5, 76, 0, -90),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_yi4o2"]
+closed = true
+_data = {
+"points": PackedVector3Array(-5, 0, 5, 5, 0, -5, 77, 0, -109, -5, 0, -5, 5, 0, 5, 103, 0, -109, 5, 0, -5, -5, 0, 5, 103, 0, -91, 5, 0, 5, -5, 0, -5, 77, 0, -91),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_uc1qp"]
+closed = true
+_data = {
+"points": PackedVector3Array(-5, 0, 5, 5, 0, -5, 78, 0, -108, -5, 0, -5, 5, 0, 5, 102, 0, -108, 5, 0, -5, -5, 0, 5, 102, 0, -92, 5, 0, 5, -5, 0, -5, 78, 0, -92),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Level" unique_id=2067472884 instance=ExtResource("1_6i8ql")]
+advance_condition = SubResource("Resource_uaal5")
+
+[node name="WorldEnvironment" parent="." index="1" unique_id=2142308483]
+environment = SubResource("Environment_50pxj")
+
+[node name="Player" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="0" unique_id=2007518119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 275)
+
+[node name="Barrier" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="1" unique_id=805690231 node_paths=PackedStringArray("inventory") instance=ExtResource("2_eiw0b")]
+inventory = NodePath("../../../Inventory")
+
+[node name="Ground" type="StaticBody3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=1716571445]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Ground" index="0" unique_id=1814017404]
+shape = SubResource("WorldBoundaryShape3D_6i8ql")
+
+[node name="Gems" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="3" unique_id=1884276884]
+
+[node name="GemRed" parent="PixelatedViewportContainer/SubViewport/Gems" index="0" unique_id=1095506796 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148, 0, 164)
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_myl60")])
+
+[node name="GemOrange" parent="PixelatedViewportContainer/SubViewport/Gems" index="1" unique_id=1388669149 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
+type = 1
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_be6o3")])
+
+[node name="GemYellow" parent="PixelatedViewportContainer/SubViewport/Gems" index="2" unique_id=702565288 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34)
+type = 2
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_8xx5y")])
+
+[node name="GemGreen" parent="PixelatedViewportContainer/SubViewport/Gems" index="3" unique_id=2120489671 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0.25, -100)
+type = 3
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_50pxj")])
+
+[node name="GemBlue" parent="PixelatedViewportContainer/SubViewport/Gems" index="4" unique_id=1244349392 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.5, 0.25, -115)
+type = 4
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_80ana")])
+
+[node name="GemIndigo" parent="PixelatedViewportContainer/SubViewport/Gems" index="5" unique_id=1065386700 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 20.25, -30)
+type = 5
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_at1ct")])
+
+[node name="GemViolet" parent="PixelatedViewportContainer/SubViewport/Gems" index="6" unique_id=1065799638 instance=ExtResource("6_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
+type = 6
+effects = Array[ExtResource("8_i3r2j")]([SubResource("Resource_46lcd")])
+
+[node name="Buildings" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="4" unique_id=658249836]
+
+[node name="Hospital" parent="PixelatedViewportContainer/SubViewport/Buildings" index="0" unique_id=1476696496 instance=ExtResource("2_m5sr4")]
+
+[node name="Goal" type="Area3D" parent="PixelatedViewportContainer/SubViewport/Buildings/Hospital" index="8" unique_id=1675729345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Buildings/Hospital/Goal" index="0" unique_id=1346456637]
+shape = SubResource("SphereShape3D_yi4o2")
+
+[node name="GenericSmall" parent="PixelatedViewportContainer/SubViewport/Buildings" index="1" unique_id=1907712280 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -30)
+
+[node name="GenericSmall2" parent="PixelatedViewportContainer/SubViewport/Buildings" index="2" unique_id=1009403097 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
+
+[node name="GenericSmall3" parent="PixelatedViewportContainer/SubViewport/Buildings" index="3" unique_id=244548829 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
+
+[node name="GenericSmall4" parent="PixelatedViewportContainer/SubViewport/Buildings" index="4" unique_id=1797743895 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 30)
+
+[node name="GenericLarge" parent="PixelatedViewportContainer/SubViewport/Buildings" index="5" unique_id=208852505 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -30)
+
+[node name="GenericLarge4" parent="PixelatedViewportContainer/SubViewport/Buildings" index="6" unique_id=2127379329 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 161)
+
+[node name="GenericLarge5" parent="PixelatedViewportContainer/SubViewport/Buildings" index="7" unique_id=576228716 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 125)
+
+[node name="GenericLarge6" parent="PixelatedViewportContainer/SubViewport/Buildings" index="8" unique_id=81740527 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 110)
+
+[node name="GenericLarge7" parent="PixelatedViewportContainer/SubViewport/Buildings" index="9" unique_id=472110317 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 110)
+
+[node name="GenericLarge2" parent="PixelatedViewportContainer/SubViewport/Buildings" index="10" unique_id=465307375 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 30)
+
+[node name="GenericLarge3" parent="PixelatedViewportContainer/SubViewport/Buildings" index="11" unique_id=350068155 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 30)
+
+[node name="GenericMedium" parent="PixelatedViewportContainer/SubViewport/Buildings" index="12" unique_id=620681790 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -30)
+
+[node name="GenericSmall5" parent="PixelatedViewportContainer/SubViewport/Buildings" index="13" unique_id=951886668 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 200)
+
+[node name="GenericSmall6" parent="PixelatedViewportContainer/SubViewport/Buildings" index="14" unique_id=386442204 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 200)
+
+[node name="GenericSmall7" parent="PixelatedViewportContainer/SubViewport/Buildings" index="15" unique_id=2001931594 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 200)
+
+[node name="GenericSmall18" parent="PixelatedViewportContainer/SubViewport/Buildings" index="16" unique_id=1535991358 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 200)
+
+[node name="GenericSmall35" parent="PixelatedViewportContainer/SubViewport/Buildings" index="17" unique_id=1615511471 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 200)
+
+[node name="GenericSmall36" parent="PixelatedViewportContainer/SubViewport/Buildings" index="18" unique_id=1032580720 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 200)
+
+[node name="GenericSmall37" parent="PixelatedViewportContainer/SubViewport/Buildings" index="19" unique_id=714096367 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 200)
+
+[node name="GenericSmall38" parent="PixelatedViewportContainer/SubViewport/Buildings" index="20" unique_id=1867164731 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 200)
+
+[node name="GenericSmall39" parent="PixelatedViewportContainer/SubViewport/Buildings" index="21" unique_id=1858556203 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 200)
+
+[node name="GenericSmall41" parent="PixelatedViewportContainer/SubViewport/Buildings" index="22" unique_id=1270745692 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -200)
+
+[node name="GenericSmall42" parent="PixelatedViewportContainer/SubViewport/Buildings" index="23" unique_id=1058408973 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -200)
+
+[node name="GenericSmall43" parent="PixelatedViewportContainer/SubViewport/Buildings" index="24" unique_id=1933887580 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -200)
+
+[node name="GenericSmall44" parent="PixelatedViewportContainer/SubViewport/Buildings" index="25" unique_id=830116045 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -200)
+
+[node name="GenericSmall47" parent="PixelatedViewportContainer/SubViewport/Buildings" index="26" unique_id=1285974857 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+
+[node name="GenericSmall45" parent="PixelatedViewportContainer/SubViewport/Buildings" index="27" unique_id=1029162906 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -200)
+
+[node name="GenericSmall46" parent="PixelatedViewportContainer/SubViewport/Buildings" index="28" unique_id=970948599 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -200)
+
+[node name="GenericSmall40" parent="PixelatedViewportContainer/SubViewport/Buildings" index="29" unique_id=2078138463 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 200)
+
+[node name="GenericSmall19" parent="PixelatedViewportContainer/SubViewport/Buildings" index="30" unique_id=905823645 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -200)
+
+[node name="GenericSmall20" parent="PixelatedViewportContainer/SubViewport/Buildings" index="31" unique_id=2138468626 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -200)
+
+[node name="GenericSmall21" parent="PixelatedViewportContainer/SubViewport/Buildings" index="32" unique_id=1362397543 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -150)
+
+[node name="GenericSmall22" parent="PixelatedViewportContainer/SubViewport/Buildings" index="33" unique_id=50742860 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -150)
+
+[node name="GenericSmall23" parent="PixelatedViewportContainer/SubViewport/Buildings" index="34" unique_id=133520064 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -100)
+
+[node name="GenericSmall24" parent="PixelatedViewportContainer/SubViewport/Buildings" index="35" unique_id=613531979 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -100)
+
+[node name="GenericSmall25" parent="PixelatedViewportContainer/SubViewport/Buildings" index="36" unique_id=2122119459 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -50)
+
+[node name="GenericSmall26" parent="PixelatedViewportContainer/SubViewport/Buildings" index="37" unique_id=1909432452 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -50)
+
+[node name="GenericSmall27" parent="PixelatedViewportContainer/SubViewport/Buildings" index="38" unique_id=1672456910 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
+
+[node name="GenericSmall28" parent="PixelatedViewportContainer/SubViewport/Buildings" index="39" unique_id=1973125816 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 0)
+
+[node name="GenericSmall29" parent="PixelatedViewportContainer/SubViewport/Buildings" index="40" unique_id=1097480005 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 50)
+
+[node name="GenericSmall30" parent="PixelatedViewportContainer/SubViewport/Buildings" index="41" unique_id=415649213 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 50)
+
+[node name="GenericSmall31" parent="PixelatedViewportContainer/SubViewport/Buildings" index="42" unique_id=94930293 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 100)
+
+[node name="GenericSmall32" parent="PixelatedViewportContainer/SubViewport/Buildings" index="43" unique_id=177247223 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 100)
+
+[node name="GenericSmall33" parent="PixelatedViewportContainer/SubViewport/Buildings" index="44" unique_id=816643229 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 150)
+
+[node name="GenericSmall34" parent="PixelatedViewportContainer/SubViewport/Buildings" index="45" unique_id=1524029744 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 150)
+
+[node name="GenericSmall8" parent="PixelatedViewportContainer/SubViewport/Buildings" index="46" unique_id=2106097292 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 161)
+
+[node name="GenericSmall9" parent="PixelatedViewportContainer/SubViewport/Buildings" index="47" unique_id=2107257584 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 181)
+
+[node name="GenericSmall50" parent="PixelatedViewportContainer/SubViewport/Buildings" index="48" unique_id=1694077815 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 181)
+
+[node name="GenericSmall51" parent="PixelatedViewportContainer/SubViewport/Buildings" index="49" unique_id=178278984 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84, 0, 172)
+
+[node name="GenericSmall53" parent="PixelatedViewportContainer/SubViewport/Buildings" index="50" unique_id=201325657 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84, 0, 156)
+
+[node name="GenericSmall54" parent="PixelatedViewportContainer/SubViewport/Buildings" index="51" unique_id=2126327718 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 156)
+
+[node name="GenericSmall55" parent="PixelatedViewportContainer/SubViewport/Buildings" index="52" unique_id=1030651630 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 0, 156)
+
+[node name="GenericSmall56" parent="PixelatedViewportContainer/SubViewport/Buildings" index="53" unique_id=1860013075 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 0, 172)
+
+[node name="GenericSmall57" parent="PixelatedViewportContainer/SubViewport/Buildings" index="54" unique_id=2073737507 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 0, 188)
+
+[node name="GenericSmall58" parent="PixelatedViewportContainer/SubViewport/Buildings" index="55" unique_id=151560403 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132, 0, 180)
+
+[node name="GenericSmall65" parent="PixelatedViewportContainer/SubViewport/Buildings" index="56" unique_id=942947089 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148, 0, 180)
+
+[node name="GenericSmall66" parent="PixelatedViewportContainer/SubViewport/Buildings" index="57" unique_id=104495238 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 0, 180)
+
+[node name="GenericSmall67" parent="PixelatedViewportContainer/SubViewport/Buildings" index="58" unique_id=1596569472 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 0, 164)
+
+[node name="GenericSmall68" parent="PixelatedViewportContainer/SubViewport/Buildings" index="59" unique_id=293396664 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 0, 148)
+
+[node name="GenericSmall69" parent="PixelatedViewportContainer/SubViewport/Buildings" index="60" unique_id=2015424282 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148, 0, 148)
+
+[node name="GenericSmall59" parent="PixelatedViewportContainer/SubViewport/Buildings" index="61" unique_id=1406508587 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132, 0, 164)
+
+[node name="GenericSmall60" parent="PixelatedViewportContainer/SubViewport/Buildings" index="62" unique_id=1353073641 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132, 0, 148)
+
+[node name="GenericSmall61" parent="PixelatedViewportContainer/SubViewport/Buildings" index="63" unique_id=2047437108 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 0, 140)
+
+[node name="GenericSmall62" parent="PixelatedViewportContainer/SubViewport/Buildings" index="64" unique_id=947460001 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 140)
+
+[node name="GenericSmall63" parent="PixelatedViewportContainer/SubViewport/Buildings" index="65" unique_id=1390630554 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108, 0, 124)
+
+[node name="GenericSmall64" parent="PixelatedViewportContainer/SubViewport/Buildings" index="66" unique_id=299327816 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124, 0, 124)
+
+[node name="GenericSmall52" parent="PixelatedViewportContainer/SubViewport/Buildings" index="67" unique_id=524245674 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 172)
+
+[node name="GenericSmall10" parent="PixelatedViewportContainer/SubViewport/Buildings" index="68" unique_id=525092544 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 181)
+
+[node name="GenericMedium2" parent="PixelatedViewportContainer/SubViewport/Buildings" index="69" unique_id=1659381811 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 140)
+
+[node name="GenericSmall11" parent="PixelatedViewportContainer/SubViewport/Buildings" index="70" unique_id=464450834 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 140)
+
+[node name="GenericSmall12" parent="PixelatedViewportContainer/SubViewport/Buildings" index="71" unique_id=510109496 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 140)
+
+[node name="GenericSmall17" parent="PixelatedViewportContainer/SubViewport/Buildings" index="72" unique_id=1972992993 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 140)
+
+[node name="GenericSmall13" parent="PixelatedViewportContainer/SubViewport/Buildings" index="73" unique_id=2058507459 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 101)
+
+[node name="GenericSmall14" parent="PixelatedViewportContainer/SubViewport/Buildings" index="74" unique_id=1973716648 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 101)
+
+[node name="GenericSmall15" parent="PixelatedViewportContainer/SubViewport/Buildings" index="75" unique_id=873333148 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 121)
+
+[node name="GenericSmall16" parent="PixelatedViewportContainer/SubViewport/Buildings" index="76" unique_id=1101426291 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 121)
+
+[node name="Stadium" parent="PixelatedViewportContainer/SubViewport/Buildings" index="77" unique_id=1859896565 instance=ExtResource("11_50pxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -100)
+
+[node name="Gate" parent="PixelatedViewportContainer/SubViewport/Buildings" index="78" unique_id=1703057865 instance=ExtResource("12_80ana")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -70)
+
+[node name="Gate2" parent="PixelatedViewportContainer/SubViewport/Buildings" index="79" unique_id=890934895 instance=ExtResource("12_80ana")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -64)
+
+[node name="Gate3" parent="PixelatedViewportContainer/SubViewport/Buildings" index="80" unique_id=2054021111 instance=ExtResource("12_80ana")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -58)
+
+[node name="Gate4" parent="PixelatedViewportContainer/SubViewport/Buildings" index="81" unique_id=1353429373 instance=ExtResource("12_80ana")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -52)
+
+[node name="GenericMedium3" parent="PixelatedViewportContainer/SubViewport/Buildings" index="82" unique_id=1225314352 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, -65)
+
+[node name="GenericMedium4" parent="PixelatedViewportContainer/SubViewport/Buildings" index="83" unique_id=523435331 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -65)
+
+[node name="GenericMedium5" parent="PixelatedViewportContainer/SubViewport/Buildings" index="84" unique_id=900912602 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 0, -56)
+
+[node name="GenericSmall48" parent="PixelatedViewportContainer/SubViewport/Buildings" index="85" unique_id=1162804848 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, -60)
+
+[node name="GenericLarge8" parent="PixelatedViewportContainer/SubViewport/Buildings" index="86" unique_id=2016712481 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -130)
+
+[node name="GenericLarge9" parent="PixelatedViewportContainer/SubViewport/Buildings" index="87" unique_id=649075588 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143, 0, -130)
+
+[node name="GenericLarge10" parent="PixelatedViewportContainer/SubViewport/Buildings" index="88" unique_id=1485694726 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143, 0, -130)
+
+[node name="GenericLarge11" parent="PixelatedViewportContainer/SubViewport/Buildings" index="89" unique_id=1484674192 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136, 0, -130)
+
+[node name="GenericLarge12" parent="PixelatedViewportContainer/SubViewport/Buildings" index="90" unique_id=717331730 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129, 0, -130)
+
+[node name="GenericLarge13" parent="PixelatedViewportContainer/SubViewport/Buildings" index="91" unique_id=2083521382 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129, 0, -130)
+
+[node name="GenericLarge14" parent="PixelatedViewportContainer/SubViewport/Buildings" index="92" unique_id=1749049769 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122, 0, -130)
+
+[node name="GenericLarge15" parent="PixelatedViewportContainer/SubViewport/Buildings" index="93" unique_id=158697511 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -130)
+
+[node name="GenericLarge16" parent="PixelatedViewportContainer/SubViewport/Buildings" index="94" unique_id=1757782687 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -130)
+
+[node name="GenericLarge17" parent="PixelatedViewportContainer/SubViewport/Buildings" index="95" unique_id=1262621822 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136, 0, -100)
+
+[node name="GenericLarge18" parent="PixelatedViewportContainer/SubViewport/Buildings" index="96" unique_id=121531343 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129, 0, -100)
+
+[node name="GenericLarge19" parent="PixelatedViewportContainer/SubViewport/Buildings" index="97" unique_id=757671849 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129, 0, -100)
+
+[node name="GenericLarge20" parent="PixelatedViewportContainer/SubViewport/Buildings" index="98" unique_id=2085484865 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122, 0, -100)
+
+[node name="GenericLarge21" parent="PixelatedViewportContainer/SubViewport/Buildings" index="99" unique_id=255721624 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -100)
+
+[node name="GenericLarge22" parent="PixelatedViewportContainer/SubViewport/Buildings" index="100" unique_id=695715255 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -100)
+
+[node name="GenericLarge23" parent="PixelatedViewportContainer/SubViewport/Buildings" index="101" unique_id=339235551 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -106)
+
+[node name="GenericLarge24" parent="PixelatedViewportContainer/SubViewport/Buildings" index="102" unique_id=399332890 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -112)
+
+[node name="GenericLarge25" parent="PixelatedViewportContainer/SubViewport/Buildings" index="103" unique_id=1321748408 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -118)
+
+[node name="GenericLarge33" parent="PixelatedViewportContainer/SubViewport/Buildings" index="104" unique_id=460730747 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84, 0, -118)
+
+[node name="GenericLarge26" parent="PixelatedViewportContainer/SubViewport/Buildings" index="105" unique_id=1291992296 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 0, -124)
+
+[node name="GenericLarge27" parent="PixelatedViewportContainer/SubViewport/Buildings" index="106" unique_id=1613834924 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -124)
+
+[node name="GenericLarge28" parent="PixelatedViewportContainer/SubViewport/Buildings" index="107" unique_id=231941628 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -118)
+
+[node name="GenericLarge29" parent="PixelatedViewportContainer/SubViewport/Buildings" index="108" unique_id=1496914370 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -112)
+
+[node name="GenericLarge30" parent="PixelatedViewportContainer/SubViewport/Buildings" index="109" unique_id=1870237792 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -106)
+
+[node name="GenericLarge31" parent="PixelatedViewportContainer/SubViewport/Buildings" index="110" unique_id=1380816273 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -100)
+
+[node name="GenericLarge32" parent="PixelatedViewportContainer/SubViewport/Buildings" index="111" unique_id=1335857345 instance=ExtResource("4_eiw0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143, 0, -100)
+
+[node name="GenericMedium6" parent="PixelatedViewportContainer/SubViewport/Buildings" index="112" unique_id=2066329764 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136, 0, -93)
+
+[node name="GenericMedium9" parent="PixelatedViewportContainer/SubViewport/Buildings" index="113" unique_id=872711483 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107, 0, -108)
+
+[node name="GenericMedium10" parent="PixelatedViewportContainer/SubViewport/Buildings" index="114" unique_id=198788850 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107, 0, -116)
+
+[node name="GenericMedium11" parent="PixelatedViewportContainer/SubViewport/Buildings" index="115" unique_id=1076531573 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99, 0, -113)
+
+[node name="GenericMedium7" parent="PixelatedViewportContainer/SubViewport/Buildings" index="116" unique_id=2142059940 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -93)
+
+[node name="GenericMedium8" parent="PixelatedViewportContainer/SubViewport/Buildings" index="117" unique_id=379016385 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 0, -93)
+
+[node name="GenericSmall49" parent="PixelatedViewportContainer/SubViewport/Buildings" index="118" unique_id=1685162219 instance=ExtResource("3_dt5a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110, 0, -92)
+
+[node name="GenericMedium12" parent="PixelatedViewportContainer/SubViewport/Buildings" index="119" unique_id=1230108478 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 0, -150)
+
+[node name="GenericMedium13" parent="PixelatedViewportContainer/SubViewport/Buildings" index="120" unique_id=1378391409 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, -150)
+
+[node name="GenericMedium14" parent="PixelatedViewportContainer/SubViewport/Buildings" index="121" unique_id=787800740 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 0, -137)
+
+[node name="GenericMedium15" parent="PixelatedViewportContainer/SubViewport/Buildings" index="122" unique_id=1468822805 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67, 0, 165)
+
+[node name="GenericMedium16" parent="PixelatedViewportContainer/SubViewport/Buildings" index="123" unique_id=716094011 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, 0, 156)
+
+[node name="GenericMedium17" parent="PixelatedViewportContainer/SubViewport/Buildings" index="124" unique_id=336742625 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, 0, 168)
+
+[node name="GenericMedium18" parent="PixelatedViewportContainer/SubViewport/Buildings" index="125" unique_id=164928808 instance=ExtResource("5_iiir4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, 0, 184)
+
+[node name="Enemies" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="5" unique_id=848772796]
+
+[node name="CarPath" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="0" unique_id=2069469671]
+curve = SubResource("Curve3D_50pxj")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/CarPath" index="0" unique_id=1384509815]
+transform = Transform3D(0.0067996876, 0, 0.99997663, 0, 1, 0, -0.99997663, 0, 0.0067996876, -20, 0, -20.272)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 40.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Car" parent="PixelatedViewportContainer/SubViewport/Enemies/CarPath/AutoPathFollow3D" index="0" unique_id=1885266590 instance=ExtResource("12_8xx5y")]
+
+[node name="AutoPathFollow3D2" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/CarPath" index="1" unique_id=1993259639]
+transform = Transform3D(4.3711378e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 4.3711378e-08, 19.866295, 0, 20)
+progress = 80.136475
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 40.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Car" parent="PixelatedViewportContainer/SubViewport/Enemies/CarPath/AutoPathFollow3D2" index="0" unique_id=1828019737 instance=ExtResource("12_8xx5y")]
+
+[node name="JetPath" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="1" unique_id=1641011385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.25, 0)
+curve = SubResource("Curve3D_be6o3")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath" index="0" unique_id=691582298]
+transform = Transform3D(1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, 1, -20, 0, -30)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 40.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Jet" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath/AutoPathFollow3D" index="0" unique_id=1772259610 instance=ExtResource("13_8xx5y")]
+
+[node name="AutoPathFollow3D2" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath" index="1" unique_id=896846088]
+transform = Transform3D(4.371139e-08, 0, 1, 0, 1, 0, -1, 0, 4.371139e-08, 19.999973, 0, 30.00004)
+progress = 99.99997
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 40.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Jet" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath/AutoPathFollow3D2" index="0" unique_id=1949304179 instance=ExtResource("13_8xx5y")]
+
+[node name="CarPath2" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="2" unique_id=1915787426]
+curve = SubResource("Curve3D_8xx5y")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/CarPath2" index="0" unique_id=1782842339]
+transform = Transform3D(0.70720637, 0, -0.7070037, 0, 1, 0, 0.7070037, 0, 0.70720637, 30.000036, 0, 189.99997)
+progress = 80.218605
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 10.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Car" parent="PixelatedViewportContainer/SubViewport/Enemies/CarPath2/AutoPathFollow3D" index="0" unique_id=1800987969 instance=ExtResource("12_8xx5y")]
+
+[node name="JetPath2" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="3" unique_id=1581329042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.25, -20)
+curve = SubResource("Curve3D_80ana")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath2" index="0" unique_id=2068321693]
+transform = Transform3D(-0.7071051, 0, 0.707105, 0, 1, 0, -0.707105, 0, -0.7071051, -30, 0, 170)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 10.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Jet" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath2/AutoPathFollow3D" index="0" unique_id=1249157548 instance=ExtResource("13_8xx5y")]
+
+[node name="JetPath3" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="4" unique_id=1645426212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+curve = SubResource("Curve3D_at1ct")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath3" index="0" unique_id=651358068]
+transform = Transform3D(4.371128e-08, 0, 0.99999756, 0, 1, 0, -0.99999756, 0, 4.371128e-08, 90, 0, -112.5)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 40.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Jet" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath3/AutoPathFollow3D" index="0" unique_id=1045747429 instance=ExtResource("13_8xx5y")]
+
+[node name="AutoPathFollow3D2" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath3" index="1" unique_id=372471512]
+transform = Transform3D(-3.139157e-07, 0, -0.99999756, 0, 1, 0, 0.99999756, 0, -3.139157e-07, 89.99999, 0, -87.5)
+progress = 44.107586
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 40.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Jet" parent="PixelatedViewportContainer/SubViewport/Enemies/JetPath3/AutoPathFollow3D2" index="0" unique_id=1923129206 instance=ExtResource("13_8xx5y")]
+
+[node name="HorsePath" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="5" unique_id=1360054206]
+curve = SubResource("Curve3D_46lcd")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath" index="0" unique_id=1929972788]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 75, 0, -111)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 30.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Horse" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath/AutoPathFollow3D" index="0" unique_id=27185714 instance=ExtResource("16_at1ct")]
+
+[node name="HorsePath4" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="6" unique_id=1223622803]
+curve = SubResource("Curve3D_uaal5")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath4" index="0" unique_id=1699127166]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 76, 0, -110)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 5.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Horse" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath4/AutoPathFollow3D" index="0" unique_id=1664440794 instance=ExtResource("16_at1ct")]
+
+[node name="HorsePath2" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="7" unique_id=347055237]
+curve = SubResource("Curve3D_yi4o2")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath2" index="0" unique_id=692683945]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 77, 0, -109)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 20.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Horse" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath2/AutoPathFollow3D" index="0" unique_id=735341903 instance=ExtResource("16_at1ct")]
+
+[node name="HorsePath3" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Enemies" index="8" unique_id=324268081]
+curve = SubResource("Curve3D_uc1qp")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath3" index="0" unique_id=724827100]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 78, 0, -108)
+use_model_front = true
+script = ExtResource("11_be6o3")
+speed = 10.0
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Horse" parent="PixelatedViewportContainer/SubViewport/Enemies/HorsePath3/AutoPathFollow3D" index="0" unique_id=1271803744 instance=ExtResource("16_at1ct")]
+
+[node name="HeadsUpDisplay" parent="CanvasLayer" parent_id_path=PackedInt32Array(19965248) index="0" unique_id=257419253]
+_start_message = ExtResource("17_46lcd")

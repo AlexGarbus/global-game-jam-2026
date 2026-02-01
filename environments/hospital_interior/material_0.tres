@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d73aveq078rr"]
+
+[ext_resource type="Texture2D" uid="uid://bikvw1ol1fkv2" path="res://environments/hospital_interior/hospital_interior_0.png" id="1_0nn18"]
+
+[resource]
+resource_name = "material_0"
+shading_mode = 2
+albedo_texture = ExtResource("1_0nn18")
+texture_filter = 0
+texture_repeat = false
