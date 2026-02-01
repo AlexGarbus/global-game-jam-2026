@@ -47,5 +47,3 @@ horizontal_alignment = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="MessageCanvas" unique_id=750038006]
 unique_name_in_owner = true
-
-[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

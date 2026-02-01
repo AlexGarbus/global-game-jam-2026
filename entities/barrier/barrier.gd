@@ -2,6 +2,7 @@ extends StaticBody3D
 
 
 @export var inventory: Inventory
+@export var message: Message
 
 
 func _ready() -> void:
@@ -10,6 +11,7 @@ func _ready() -> void:
 
 
 func _on_player_detection_body_entered(body: Node3D) -> void:
+	MessageBus.send(message)
 	show()
 
 

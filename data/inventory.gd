@@ -6,6 +6,7 @@ signal gem_changed(type: Enum.GemType, value: bool)
 signal all_gems_collected()
 
 @export var _start_with_gems := false
+@export var _all_collected_message: Message
 
 var _gems: Array[bool]
 
@@ -28,3 +29,4 @@ func set_gem(type: Enum.GemType, value: bool) -> void:
 	gem_changed.emit(type, value)
 	if not _gems.has(false):
 		all_gems_collected.emit()
+		MessageBus.send(_all_collected_message)

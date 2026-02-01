@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://34asvf5u2d7t" path="res://entities/player/player.tscn" id="1_72lju"]
 [ext_resource type="PackedScene" uid="uid://x7gpm0ttcucv" path="res://user_interface/heads_up_display/heads_up_display.tscn" id="2_nmr65"]
 [ext_resource type="PackedScene" uid="uid://cwymdjqwhe33l" path="res://common/scenes/pixelated_viewport_container.tscn" id="2_vmt1o"]
+[ext_resource type="Resource" uid="uid://o1b54dx7fngp" path="res://data/messages/super_message.tres" id="3_462q3"]
 [ext_resource type="PackedScene" uid="uid://coqqhypit4pw3" path="res://user_interface/game_over/game_over.tscn" id="3_qutwn"]
 [ext_resource type="Script" uid="uid://kgme8k6738s5" path="res://data/inventory.gd" id="6_qutwn"]
 
@@ -12,6 +13,7 @@ script = ExtResource("1_5nclj")
 
 [node name="Inventory" type="Node" parent="." unique_id=259499367]
 script = ExtResource("6_qutwn")
+_all_collected_message = ExtResource("3_462q3")
 metadata/_custom_type_script = "uid://kgme8k6738s5"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2142308483]
