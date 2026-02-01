@@ -10,7 +10,9 @@ extends Node
 
 func _ready() -> void:
 	_explosion.hide()
+	_explosion.stop()
 	_flame.hide()
+	_flame.stop()
 
 
 func _on_health_reached_zero() -> void:

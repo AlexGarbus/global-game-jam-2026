@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bx67ifljxw1cr"]
 
 [ext_resource type="Texture2D" uid="uid://djxkh1clxrfh8" path="res://entities/effects/explosion/explosion.png" id="1_sau57"]
+[ext_resource type="AudioStream" uid="uid://dn1f3s6vetmm5" path="res://entities/effects/explosion/sound.wav" id="2_84h3v"]
+[ext_resource type="Script" uid="uid://dp0t3rgqpd2d0" path="res://entities/effects/explosion/explosion.gd" id="2_jp2bf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84h3v"]
 atlas = ExtResource("1_sau57")
@@ -134,3 +136,9 @@ sprite_frames = SubResource("SpriteFrames_hcff6")
 autoplay = "default"
 frame = 16
 frame_progress = 1.0
+script = ExtResource("2_jp2bf")
+
+[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=62898014]
+stream = ExtResource("2_84h3v")
+
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]

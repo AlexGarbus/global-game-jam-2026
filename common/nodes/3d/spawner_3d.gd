@@ -3,6 +3,8 @@ extends Node3D
 ## A node that spawns scenes in 3D space.
 
 
+signal spawned
+
 ## How [member scene] will be spawned relative to the node at [member spawn_path].
 enum SPAWN_MODE {
 	## Spawn [member scene] as a sibling of the node at [member spawn_path].
@@ -30,3 +32,4 @@ func spawn() -> void:
 		node.add_sibling(instance)
 	elif spawn_mode == SPAWN_MODE.CHILD:
 		node.add_child(instance)
+	spawned.emit()

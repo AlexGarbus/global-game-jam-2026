@@ -1,6 +1,8 @@
 extends RigidBody3D
 
 
+signal super_changed(value: bool)
+
 @export var inventory: Inventory
 @export var input_disabled := false
 @export_group("Knockback")
@@ -109,6 +111,7 @@ func _end_knockback() -> void:
 #region Powerups
 func set_super(value: bool) -> void:
 	_hair.visible = value
+	super_changed.emit(value)
 #endregion
 
 #region Connected Signals

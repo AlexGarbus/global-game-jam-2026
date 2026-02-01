@@ -23,6 +23,5 @@ spawn_top_level = true
 metadata/_custom_type_script = "uid://da2ekqxdmi875"
 
 [node name="BulletTimer" type="Timer" parent="." unique_id=204706936]
-wait_time = 2.0
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

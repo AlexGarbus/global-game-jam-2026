@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c877n6ydhad8p" path="res://entities/player/models/player.glb" id="1_nejpb"]
 [ext_resource type="PackedScene" uid="uid://o6r0v4cvfmyi" path="res://entities/player/models/mask.glb" id="2_stky2"]
+[ext_resource type="AudioStream" uid="uid://b4loypfscaycl" path="res://entities/player/audio/jump.wav" id="3_d3so7"]
+[ext_resource type="AudioStream" uid="uid://dde6tfxpc0ma2" path="res://entities/player/audio/bubble_bounce.wav" id="4_5u147"]
 
 [sub_resource type="Animation" id="Animation_d3so7"]
 length = 0.001
@@ -52,7 +54,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_5u147"]
 resource_name = "autoplay"
-length = 1.5
+length = 1.6
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,6 +99,25 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0.05, 0, 0, 0, 0, 1, -0.050000004, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.3)
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("JumpSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_d3so7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_5u147")
+}],
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ltvs"]
 _data = {
@@ -117,3 +138,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, -0.125)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=184766959]
 libraries/ = SubResource("AnimationLibrary_7ltvs")
 autoplay = &"autoplay"
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=310029211]

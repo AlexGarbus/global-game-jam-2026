@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dub87b153p5cb" path="res://entities/enemies/jet/jet.glb" id="1_1p522"]
 [ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="2_w61l4"]
+[ext_resource type="Script" uid="uid://bcfvsp3xvc277" path="res://entities/enemies/enemy_stats.gd" id="2_xurdr"]
 [ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="3_4isyr"]
 [ext_resource type="Script" uid="uid://bvprpjmdwf8rn" path="res://common/nodes/defeat_changer.gd" id="4_1rwyc"]
 [ext_resource type="PackedScene" uid="uid://6ysk5v55r5u7" path="res://entities/drop/drop.tscn" id="5_xurdr"]
@@ -10,6 +11,11 @@
 size = Vector3(4.1, 1.1, 4.1)
 
 [node name="Jet" unique_id=1772259610 instance=ExtResource("1_1p522")]
+
+[node name="EnemyStats" type="Node" parent="Jet/StaticBody3D" parent_id_path=PackedInt32Array(415575896) index="1" unique_id=446186121]
+script = ExtResource("2_xurdr")
+type = 2
+metadata/_custom_type_script = "uid://bcfvsp3xvc277"
 
 [node name="DamageArea3D" type="Area3D" parent="." index="1" unique_id=483582881 node_paths=PackedStringArray("health")]
 collision_layer = 0

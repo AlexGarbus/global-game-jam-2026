@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://wla5w7he7vqw"]
 
 [ext_resource type="PackedScene" uid="uid://bcn60b0jdojjf" path="res://entities/enemies/horse/horse.glb" id="1_yxl5m"]
+[ext_resource type="Script" uid="uid://bcfvsp3xvc277" path="res://entities/enemies/enemy_stats.gd" id="2_yqa4r"]
 
 [node name="Horse" unique_id=27185714 instance=ExtResource("1_yxl5m")]
+
+[node name="EnemyStats" type="Node" parent="Horse/StaticBody3D" parent_id_path=PackedInt32Array(1029418384) index="1" unique_id=1901071036]
+script = ExtResource("2_yqa4r")
+type = 1
+metadata/_custom_type_script = "uid://bcfvsp3xvc277"

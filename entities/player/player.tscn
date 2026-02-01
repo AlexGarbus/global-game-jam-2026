@@ -14,6 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://ckbpvhkxvixl7" path="res://entities/effects/flame/flame.tscn" id="8_bectd"]
 [ext_resource type="PackedScene" uid="uid://bn2pt0usu8end" path="res://entities/enemies/baby/baby.tscn" id="9_afbqv"]
 [ext_resource type="Script" uid="uid://csvydjj71gbxq" path="res://common/nodes/bounds.gd" id="11_7thud"]
+[ext_resource type="Script" uid="uid://cgjjpqoo0we0f" path="res://entities/player/player_audio.gd" id="12_yqrof"]
+[ext_resource type="AudioStream" uid="uid://c1g5b0xkrbriw" path="res://entities/player/audio/scream.wav" id="13_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://4mkcmoa83pj1" path="res://entities/player/audio/shoot.wav" id="14_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://bmgi6dsq8hnl1" path="res://entities/player/audio/failure1.wav" id="15_we0b7"]
+[ext_resource type="AudioStream" uid="uid://bjruoc5ut2437" path="res://entities/player/audio/failure2.wav" id="16_mtric"]
+[ext_resource type="AudioStream" uid="uid://dpfnyp5e5vig4" path="res://entities/player/audio/super.wav" id="17_mtric"]
+[ext_resource type="AudioStream" uid="uid://cji7ayiacek0e" path="res://entities/player/audio/car.wav" id="18_ghoj8"]
+[ext_resource type="AudioStream" uid="uid://ckt2gp3ychjsw" path="res://entities/player/audio/horse.wav" id="19_t1t22"]
+[ext_resource type="AudioStream" uid="uid://ds6u3oj0wbo7j" path="res://entities/player/audio/jet.wav" id="20_50fht"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wvtmh"]
 friction = 0.5
@@ -119,11 +128,38 @@ render_priority = 1
 autoplay = ""
 
 [node name="Flame" parent="." unique_id=1644702019 instance=ExtResource("8_bectd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 visible = false
 pixel_size = 0.015625
 autoplay = ""
 frame_progress = 0.9372874
+
+[node name="Audio" type="Node" parent="." unique_id=381242895]
+script = ExtResource("12_yqrof")
+
+[node name="Failure1" type="AudioStreamPlayer" parent="Audio" unique_id=84468142]
+stream = ExtResource("15_we0b7")
+
+[node name="Failure2" type="AudioStreamPlayer" parent="Audio" unique_id=1137999972]
+stream = ExtResource("16_mtric")
+
+[node name="Scream" type="AudioStreamPlayer" parent="Audio" unique_id=203085482]
+stream = ExtResource("13_3wlsy")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio" unique_id=337283743]
+stream = ExtResource("14_3wlsy")
+
+[node name="Super" type="AudioStreamPlayer" parent="Audio" unique_id=1919580445]
+stream = ExtResource("17_mtric")
+
+[node name="Car" type="AudioStreamPlayer" parent="Audio" unique_id=215987337]
+stream = ExtResource("18_ghoj8")
+
+[node name="Horse" type="AudioStreamPlayer" parent="Audio" unique_id=585210989]
+stream = ExtResource("19_t1t22")
+
+[node name="Jet" type="AudioStreamPlayer" parent="Audio" unique_id=308949107]
+stream = ExtResource("20_50fht")
 
 [node name="Effects" type="Node" parent="." unique_id=1103082749]
 script = ExtResource("2_bectd")
@@ -138,6 +174,7 @@ one_shot = true
 
 [node name="Health" type="Node" parent="." unique_id=2010310480]
 script = ExtResource("1_symyc")
+max_value = 10
 metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
 
 [node name="KnockbackTimer" type="Timer" parent="." unique_id=471656005]
@@ -151,9 +188,14 @@ max_position = Vector3(300, 30, 300)
 target = NodePath("..")
 metadata/_custom_type_script = "uid://csvydjj71gbxq"
 
+[connection signal="body_entered" from="." to="Audio" method="_on_player_body_entered"]
+[connection signal="super_changed" from="." to="Audio" method="_on_player_super_changed"]
+[connection signal="body_entered" from="DamageArea3D" to="Audio" method="_on_damage_area_3d_body_entered"]
 [connection signal="area_entered" from="CollectArea3D" to="." method="_on_collect_area_3d_area_entered"]
+[connection signal="spawned" from="BulletSpawner" to="Audio" method="_on_bullet_spawner_spawned"]
 [connection signal="timeout" from="Effects/DefeatTimer" to="Effects" method="_on_defeat_timer_timeout"]
 [connection signal="timeout" from="Effects/BabyTimer" to="Effects" method="_on_baby_timer_timeout"]
 [connection signal="changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="reached_zero" from="Health" to="Audio" method="_on_health_reached_zero"]
 [connection signal="reached_zero" from="Health" to="Effects" method="_on_health_reached_zero"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
