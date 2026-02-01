@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5okdml8waayq"
 path.s3tc="res://.godot/imported/flame_3.png-33f273d356413ce9cc517e004c59b68b.s3tc.ctex"
+path.etc2="res://.godot/imported/flame_3.png-33f273d356413ce9cc517e004c59b68b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://entities/effects/flame/flame_3.png"
-dest_files=["res://.godot/imported/flame_3.png-33f273d356413ce9cc517e004c59b68b.s3tc.ctex"]
+dest_files=["res://.godot/imported/flame_3.png-33f273d356413ce9cc517e004c59b68b.s3tc.ctex", "res://.godot/imported/flame_3.png-33f273d356413ce9cc517e004c59b68b.etc2.ctex"]
 
 [params]
 

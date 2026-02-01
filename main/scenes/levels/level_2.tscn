@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dmwbskve5lrly" path="res://data/level_advance_conditions/area_enter_condition.gd" id="2_y5qq6"]
 [ext_resource type="PackedScene" uid="uid://d34x6k7o43wxg" path="res://environments/hospital_interior/hospital_interior.glb" id="3_l1wdh"]
 [ext_resource type="PackedScene" uid="uid://cjwrjfn67aqc6" path="res://entities/enemies/laser/laser.tscn" id="4_tbvuv"]
+[ext_resource type="Script" uid="uid://l7l6pvhnm37e" path="res://common/nodes/3d/auto_path_follow_3d.gd" id="5_3argk"]
 
 [sub_resource type="Resource" id="Resource_l1wdh"]
 script = ExtResource("2_y5qq6")
@@ -37,6 +38,27 @@ reflected_light_source = 1
 [sub_resource type="SphereShape3D" id="SphereShape3D_tbvuv"]
 radius = 10.0
 
+[sub_resource type="Curve3D" id="Curve3D_iquyg"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_3argk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3argk"]
+shading_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_3argk"]
+material = SubResource("StandardMaterial3D_3argk")
+size = Vector3(10, 2, 0.5)
+
 [node name="Level" unique_id=2067472884 instance=ExtResource("1_64n85")]
 advance_condition = SubResource("Resource_l1wdh")
 
@@ -62,7 +84,7 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Goal" index="0" unique_id=2073914165]
 shape = SubResource("SphereShape3D_tbvuv")
 
-[node name="HospitalInterior" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=645499515 instance=ExtResource("3_l1wdh")]
+[node name="HospitalInterior" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=550789690 instance=ExtResource("3_l1wdh")]
 
 [node name="Lasers" type="Node3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="3" unique_id=651639087]
 
@@ -110,3 +132,162 @@ transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -73)
 
 [node name="Laser15" parent="PixelatedViewportContainer/SubViewport/Lasers" index="14" unique_id=175084254 instance=ExtResource("4_tbvuv")]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -57, 5, -77)
+
+[node name="Path" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="15" unique_id=2145407554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 0, -74)
+curve = SubResource("Curve3D_iquyg")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path" index="0" unique_id=619174987]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path/AutoPathFollow3D" index="0" unique_id=571560184 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(0.7071067, -0.7071068, 3.090862e-08, 0.7071068, 0.7071067, 1.280277e-08, -3.090862e-08, 1.280277e-08, 1, 0, 0, 0)
+
+[node name="Path2" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="16" unique_id=1952240371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 0, -68)
+curve = SubResource("Curve3D_iquyg")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path2" index="0" unique_id=928256185]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 10, 0)
+progress = 10.0
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path2/AutoPathFollow3D" index="0" unique_id=232960772 instance=ExtResource("4_tbvuv")]
+transform = Transform3D(0.7071067, -0.7071068, 3.090862e-08, 0.7071068, 0.7071067, 1.280277e-08, -3.090862e-08, 1.280277e-08, 1, 0, 0, 0)
+
+[node name="Path3" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="17" unique_id=891687796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -53)
+curve = SubResource("Curve3D_iquyg")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path3" index="0" unique_id=439817880]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path3/AutoPathFollow3D" index="0" unique_id=1631607486 instance=ExtResource("4_tbvuv")]
+
+[node name="Path4" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="18" unique_id=66049285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, -53)
+curve = SubResource("Curve3D_3argk")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path4" index="0" unique_id=37512133]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path4/AutoPathFollow3D" index="0" unique_id=705465419 instance=ExtResource("4_tbvuv")]
+
+[node name="Path5" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="19" unique_id=1190003203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -38)
+curve = SubResource("Curve3D_iquyg")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path5" index="0" unique_id=1264467537]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 10, 0)
+progress = 10.0
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path5/AutoPathFollow3D" index="0" unique_id=1789853873 instance=ExtResource("4_tbvuv")]
+
+[node name="Path6" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="20" unique_id=42551329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, -38)
+curve = SubResource("Curve3D_3argk")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path6" index="0" unique_id=1818995534]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, 0)
+progress = 10.0
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path6/AutoPathFollow3D" index="0" unique_id=1709341651 instance=ExtResource("4_tbvuv")]
+
+[node name="Path7" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="21" unique_id=1307842813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -18)
+curve = SubResource("Curve3D_iquyg")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path7" index="0" unique_id=676407051]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path7/AutoPathFollow3D" index="0" unique_id=669743660 instance=ExtResource("4_tbvuv")]
+
+[node name="Path8" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="22" unique_id=1506194532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, -18)
+curve = SubResource("Curve3D_3argk")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path8" index="0" unique_id=680787365]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path8/AutoPathFollow3D" index="0" unique_id=1940545452 instance=ExtResource("4_tbvuv")]
+
+[node name="Path9" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="23" unique_id=1761169015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -18)
+curve = SubResource("Curve3D_iquyg")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path9" index="0" unique_id=1227216222]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 10, 0)
+progress = 10.0
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path9/AutoPathFollow3D" index="0" unique_id=211273860 instance=ExtResource("4_tbvuv")]
+
+[node name="Path10" type="Path3D" parent="PixelatedViewportContainer/SubViewport/Lasers" index="24" unique_id=277073461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, -18)
+curve = SubResource("Curve3D_3argk")
+
+[node name="AutoPathFollow3D" type="PathFollow3D" parent="PixelatedViewportContainer/SubViewport/Lasers/Path10" index="0" unique_id=1494641220]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, 0)
+progress = 10.0
+loop = false
+script = ExtResource("5_3argk")
+speed = 4.0
+ping_pong = true
+metadata/_custom_type_script = "uid://l7l6pvhnm37e"
+
+[node name="Laser16" parent="PixelatedViewportContainer/SubViewport/Lasers/Path10/AutoPathFollow3D" index="0" unique_id=1250149794 instance=ExtResource("4_tbvuv")]
+
+[node name="Sign" type="MeshInstance3D" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="4" unique_id=50820775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 9, 10)
+mesh = SubResource("BoxMesh_3argk")
+
+[node name="Label3D" type="Label3D" parent="PixelatedViewportContainer/SubViewport/Sign" index="0" unique_id=855660368]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.251)
+double_sided = false
+modulate = Color(0, 0.33333334, 1, 1)
+outline_modulate = Color(0, 0, 0.33333334, 1)
+text = "PREGNANCY WARD"
+font_size = 200

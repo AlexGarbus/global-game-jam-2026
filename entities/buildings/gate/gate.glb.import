@@ -47,8 +47,7 @@ _subresources={
 },
 "nodes": {
 "PATH:mesh": {
-"generate/physics": true,
-"physics/layer": 257
+"generate/physics": true
 }
 }
 }
