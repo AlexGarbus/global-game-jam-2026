@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b4loypfscaycl"
-path="res://.godot/imported/jump.wav-37edb78c7fd53b4ad5bfd8471e07af67.sample"
+uid="uid://c1g5b0xkrbriw"
+path="res://.godot/imported/scream.wav-d33dd3aad69824176057e0b3c2e389cf.sample"
 
 [deps]
 
-source_file="res://entities/player/audio/jump.wav"
-dest_files=["res://.godot/imported/jump.wav-37edb78c7fd53b4ad5bfd8471e07af67.sample"]
+source_file="res://entities/player/audio/scream.wav"
+dest_files=["res://.godot/imported/scream.wav-d33dd3aad69824176057e0b3c2e389cf.sample"]
 
 [params]
 

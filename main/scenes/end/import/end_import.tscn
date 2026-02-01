@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bbnn1mrcwsnlx"]
 
 [ext_resource type="PackedScene" uid="uid://b0xolau4rr2fx" path="res://main/scenes/end/import/ui_end/ui_end.tscn" id="1_5orgy"]
+[ext_resource type="Script" uid="uid://bw6tlvsy3jiyu" path="res://main/scenes/main_scene.gd" id="1_n2yyy"]
 [ext_resource type="ArrayMesh" uid="uid://bspukaur712cy" path="res://main/scenes/end/import/model/pregnant_end.obj" id="2_8afmo"]
 [ext_resource type="Environment" path="res://main/scenes/end/import/environment.tres" id="2_67iw1"]
 [ext_resource type="Material" uid="uid://go44ro7nx67p" path="res://main/scenes/end/import/model/player_material.tres" id="4_wmnmt"]
-[ext_resource type="AudioStream" uid="uid://bf2xiisc0ye1y" path="res://entities/player/audio/jump.wav" id="6_gh0u6"]
+[ext_resource type="AudioStream" uid="uid://b4loypfscaycl" path="res://entities/player/audio/jump.wav" id="6_gh0u6"]
 [ext_resource type="AudioStream" uid="uid://bdpjeix2qo6cj" path="res://main/scenes/end/import/audio/end_fanfare.wav" id="7_p5nt3"]
 [ext_resource type="AudioStream" uid="uid://bq7bu6abq1kxo" path="res://main/scenes/end/import/audio/end_slide.wav" id="8_oke64"]
 [ext_resource type="AudioStream" uid="uid://b4ed8me6mbf7p" path="res://main/scenes/end/import/audio/end_sting.wav" id="9_0yhpq"]
@@ -133,6 +134,42 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.25, 0.25, 0.25)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Camera3D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.4, 3)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Camera3D:size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("UiEnd:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_q2tif"]
@@ -305,14 +342,93 @@ tracks/12/keys = {
 "times": PackedFloat32Array(3, 4, 7.5, 10)
 }
 tracks/12/use_blend = true
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"finish"
+}]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("UiEnd:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lldr8"]
+resource_name = "zoom_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-1, 0, 3), Vector3(0, 0.4, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.1, 3.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UiEnd:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y4nbx"]
 _data = {
 &"RESET": SubResource("Animation_c0llp"),
-&"play": SubResource("Animation_q2tif")
+&"play": SubResource("Animation_q2tif"),
+&"zoom_out": SubResource("Animation_lldr8")
 }
 
-[node name="Import" type="Node" unique_id=1431171667]
+[node name="EndImport" type="Node" unique_id=998502242]
+script = ExtResource("1_n2yyy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1383101315]
 environment = ExtResource("2_67iw1")
@@ -341,8 +457,7 @@ surface_material_override/0 = ExtResource("4_wmnmt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=247333210]
 libraries/ = SubResource("AnimationLibrary_y4nbx")
-autoplay = &"play"
+autoplay = &"zoom_out"
+next/zoom_out = &"play"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2112359065]
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

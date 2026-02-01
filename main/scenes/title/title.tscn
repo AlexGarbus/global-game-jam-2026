@@ -116,13 +116,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.4786616, 0.47866172, 0.47866136, 1)
 reflected_light_source = 1
 
-[node name="Title" type="Control" unique_id=1916987376]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Title" type="Node" unique_id=1950040891]
 script = ExtResource("1_8kxsk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=46759825]
@@ -130,7 +124,6 @@ libraries/ = SubResource("AnimationLibrary_urrh6")
 autoplay = &"autoplay"
 
 [node name="PixelatedViewportContainer" parent="." unique_id=1629097868 instance=ExtResource("2_g4t8u")]
-layout_mode = 1
 
 [node name="SubViewport" type="SubViewport" parent="PixelatedViewportContainer" unique_id=128661562]
 handle_input_locally = false
@@ -142,6 +135,7 @@ mesh = SubResource("TextMesh_g4t8u")
 
 [node name="Camera3D" type="Camera3D" parent="PixelatedViewportContainer/SubViewport" unique_id=1580805049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1369534615]
 environment = SubResource("Environment_cq4pm")

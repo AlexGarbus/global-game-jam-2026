@@ -1,19 +1,14 @@
 [gd_scene format=3 uid="uid://gvvjpok7wa4g"]
 
-[ext_resource type="Texture2D" uid="uid://xgh3dh87jkoh" path="res://entities/enemies/boss/pregnant_boss_tex.png" id="1_052gy"]
 [ext_resource type="Script" uid="uid://dx6nmxubl7ca4" path="res://entities/enemies/boss/boss.gd" id="1_gatik"]
 [ext_resource type="ArrayMesh" uid="uid://pv5ljqods4b" path="res://entities/enemies/boss/pregnant_boss.obj" id="2_bo42s"]
 [ext_resource type="Texture2D" uid="uid://ccplmfiqrw67" path="res://entities/enemies/boss/eye/eye.tres" id="3_8yevx"]
 [ext_resource type="PackedScene" uid="uid://ds11r3n3s7v2s" path="res://entities/enemies/boss/rings/ring_inner.tscn" id="3_bo42s"]
+[ext_resource type="Material" uid="uid://c6w87asl6twpe" path="res://entities/enemies/boss/boss_material.tres" id="3_gatik"]
 [ext_resource type="Script" uid="uid://8w4c1kjgy5g0" path="res://common/nodes/health.gd" id="4_kfv5l"]
 [ext_resource type="Script" uid="uid://c58ps3xr345lv" path="res://common/nodes/3d/damage_area_3d.gd" id="5_e83ns"]
 [ext_resource type="Script" uid="uid://dls6ti1x2q5gs" path="res://common/nodes/3d/attack_area_3d.gd" id="6_e83ns"]
 [ext_resource type="PackedScene" uid="uid://bmor1o2luredt" path="res://entities/enemies/boss/rings/ring_outer.tscn" id="8_bpi8u"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_052gy"]
-shading_mode = 2
-albedo_texture = ExtResource("1_052gy")
-texture_filter = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8yevx"]
 radius = 1.0
@@ -353,7 +348,7 @@ script = ExtResource("1_gatik")
 
 [node name="PregnantBoss" type="MeshInstance3D" parent="." unique_id=365213745]
 mesh = ExtResource("2_bo42s")
-surface_material_override/0 = SubResource("StandardMaterial3D_052gy")
+surface_material_override/0 = ExtResource("3_gatik")
 
 [node name="Eye" type="Sprite3D" parent="PregnantBoss" unique_id=1365057311]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.376)

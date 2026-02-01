@@ -1,0 +1,17 @@
+[gd_resource type="Environment" format=3 uid="uid://bcfjx3rkeuell"]
+
+[ext_resource type="Texture2D" uid="uid://oqtpcpoincav" path="res://environments/boss/sky.jpg" id="1_h1r4g"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l8rxo"]
+panorama = ExtResource("1_h1r4g")
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_gxbjt"]
+sky_material = SubResource("PanoramaSkyMaterial_l8rxo")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_gxbjt")
+ambient_light_source = 2
+ambient_light_color = Color(0.6039216, 0.6039216, 0.5019608, 1)
+reflected_light_source = 1

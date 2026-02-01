@@ -1,29 +1,15 @@
 [gd_scene format=3 uid="uid://eljp845wecwa"]
 
 [ext_resource type="PackedScene" uid="uid://ohxcxhi3hqu0" path="res://main/scenes/levels/level_base.tscn" id="1_k3ogb"]
-[ext_resource type="Texture2D" uid="uid://oqtpcpoincav" path="res://environments/boss/sky.jpg" id="2_2epje"]
 [ext_resource type="Script" uid="uid://q7xadk0nth6o" path="res://environments/boss/boss_battle.gd" id="2_gxbjt"]
 [ext_resource type="Script" uid="uid://c4ark2ehw4omo" path="res://data/level_advance_conditions/boss_defeat_condition.gd" id="2_kcnq0"]
 [ext_resource type="PackedScene" uid="uid://gvvjpok7wa4g" path="res://entities/enemies/boss/boss.tscn" id="3_l8rxo"]
+[ext_resource type="Environment" uid="uid://bcfjx3rkeuell" path="res://environments/boss/boss_environment.tres" id="4_kcnq0"]
 
 [sub_resource type="Resource" id="Resource_qehr3"]
 script = ExtResource("2_kcnq0")
 boss_path = NodePath("PixelatedViewportContainer/SubViewport/Boss")
 metadata/_custom_type_script = "uid://c4ark2ehw4omo"
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l8rxo"]
-panorama = ExtResource("2_2epje")
-energy_multiplier = 0.5
-
-[sub_resource type="Sky" id="Sky_gxbjt"]
-sky_material = SubResource("PanoramaSkyMaterial_l8rxo")
-
-[sub_resource type="Environment" id="Environment_kcnq0"]
-background_mode = 2
-sky = SubResource("Sky_gxbjt")
-ambient_light_source = 2
-ambient_light_color = Color(0.6039216, 0.6039216, 0.5019608, 1)
-reflected_light_source = 1
 
 [node name="Level" unique_id=2067472884 instance=ExtResource("1_k3ogb")]
 advance_condition = SubResource("Resource_qehr3")
@@ -36,7 +22,7 @@ script = ExtResource("2_gxbjt")
 _player = NodePath("../PixelatedViewportContainer/SubViewport/Player")
 
 [node name="WorldEnvironment" parent="." index="2" unique_id=2142308483]
-environment = SubResource("Environment_kcnq0")
+environment = ExtResource("4_kcnq0")
 
 [node name="Player" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="0" unique_id=2007518119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
