@@ -5,7 +5,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_pehvm"]
 font_size = 48
 
-[node name="Pause" type="Control" unique_id=1128720161 node_paths=PackedStringArray("_default_button")]
+[sub_resource type="LabelSettings" id="LabelSettings_ejkxy"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Pause" type="Control" unique_id=1128720161 node_paths=PackedStringArray("_default_main_button", "_default_credits_button")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -14,7 +18,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ejkxy")
-_default_button = NodePath("VBoxContainer/ResumeButton")
+_default_main_button = NodePath("MainScreen/ResumeButton")
+_default_credits_button = NodePath("CreditsScreen/HBoxContainer/BackButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=263541688]
 layout_mode = 1
@@ -25,7 +30,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5921569)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=583372843]
+[node name="MainScreen" type="VBoxContainer" parent="." unique_id=583372843]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,27 +47,87 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=963024112]
+[node name="Label" type="Label" parent="MainScreen" unique_id=963024112]
 layout_mode = 2
 text = "PAUSE"
 label_settings = SubResource("LabelSettings_pehvm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1713108131]
+[node name="ResumeButton" type="Button" parent="MainScreen" unique_id=1713108131]
 layout_mode = 2
 text = "Resume"
 
-[node name="FullscreenButton" type="CheckButton" parent="VBoxContainer" unique_id=1539547698]
+[node name="FullscreenButton" type="CheckButton" parent="MainScreen" unique_id=1539547698]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Fullscreen"
 alignment = 1
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1917403846]
+[node name="CreditsButton" type="Button" parent="MainScreen" unique_id=391681084]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="MainScreen" unique_id=1917403846]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="CreditsScreen" type="Control" parent="." unique_id=2028781187]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsScreen" unique_id=1144162724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CreditsScreen/HBoxContainer" unique_id=1939874078]
+layout_mode = 2
+text = "ART, MODELS, PROGRAMMING
+Alex Garbus
+
+MUSIC
+Aaron Cloutier
+
+FREE ART ASSETS
+Explosion by Cuzco
+Fire and Spell Animations by ztn & Spiney
+
+FREE AUDIO ASSETS
+boing by suzenako
+Car horn beep beep two beeps honk honk by AmishRob
+Cartoon jump by Bastianhallo
+dramatic sting by u_903n3qx7rq
+F-106 fly-by by cryptRomancer
+Failure Drum Sound Effect 1 & 2 by FunWithSound
+Horse Neigh by DRAGON-STUDIO
+HQ Explosion by Quaker540
+Laser Gun by sunnyflower
+Power on by colorsCrimsonTears
+Scream by rogueturtle
+Stone slide by u_y3wk5ympz8
+Success Fanfare Trumpets by FunWithSound
+Tada Fanfare A by plasterbrain
+
+Made with Godot Engine: https://godotengine.org/license/"
+label_settings = SubResource("LabelSettings_ejkxy")
+
+[node name="BackButton" type="Button" parent="CreditsScreen/HBoxContainer" unique_id=1635588350]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Back"
+
+[connection signal="pressed" from="MainScreen/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="toggled" from="MainScreen/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="pressed" from="MainScreen/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MainScreen/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CreditsScreen/HBoxContainer/BackButton" to="." method="_on_credits_back_button_pressed"]
