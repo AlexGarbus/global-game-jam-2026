@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bmor1o2luredt" path="res://entities/enemies/boss/rings/ring_outer.tscn" id="8_bpi8u"]
 [ext_resource type="PackedScene" uid="uid://bop5ik5j8a1v7" path="res://entities/enemies/boss/wing_group/wing_group.tscn" id="10_0qjgw"]
 [ext_resource type="PackedScene" uid="uid://bx67ifljxw1cr" path="res://entities/effects/explosion/explosion.tscn" id="11_3hlmc"]
+[ext_resource type="AudioStream" uid="uid://c4tj78iwb7v85" path="res://entities/enemies/boss/music.mp3" id="12_7xj2h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8yevx"]
 radius = 1.0
@@ -278,6 +279,20 @@ tracks/5/keys = {
 "method": &"play"
 }]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MusicPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_gatik"]
 resource_name = "start"
@@ -512,6 +527,20 @@ tracks/18/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/19/type = "method"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("MusicPlayer")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(6.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qjgw"]
 _data = {
@@ -564,7 +593,7 @@ debug_color = Color(1, 0, 0.16078432, 0.41960785)
 
 [node name="Health" type="Node" parent="." unique_id=1605493700]
 script = ExtResource("4_kfv5l")
-max_value = 50
+max_value = 30
 metadata/_custom_type_script = "uid://8w4c1kjgy5g0"
 
 [node name="BossRingInner" parent="." unique_id=556162616 instance=ExtResource("3_bo42s")]
@@ -580,5 +609,8 @@ pixel_size = 0.25
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2113919684]
 libraries/ = SubResource("AnimationLibrary_0qjgw")
 autoplay = &"start"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1456531777]
+stream = ExtResource("12_7xj2h")
 
 [connection signal="reached_zero" from="Health" to="." method="_on_health_reached_zero"]

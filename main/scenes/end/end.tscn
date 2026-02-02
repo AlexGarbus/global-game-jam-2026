@@ -4,7 +4,9 @@
 [ext_resource type="Environment" uid="uid://bcfjx3rkeuell" path="res://environments/boss/boss_environment.tres" id="2_v1c0h"]
 [ext_resource type="PackedScene" uid="uid://cwymdjqwhe33l" path="res://common/scenes/pixelated_viewport_container.tscn" id="3_jxkan"]
 [ext_resource type="Material" uid="uid://go44ro7nx67p" path="res://main/scenes/end/import/model/player_material.tres" id="3_jypvo"]
+[ext_resource type="AudioStream" uid="uid://dde6tfxpc0ma2" path="res://entities/player/audio/bubble_bounce.wav" id="4_2e7ko"]
 [ext_resource type="Material" uid="uid://c6w87asl6twpe" path="res://entities/enemies/boss/boss_material.tres" id="4_amjkb"]
+[ext_resource type="AudioStream" uid="uid://4mkcmoa83pj1" path="res://entities/player/audio/shoot.wav" id="5_a0no1"]
 [ext_resource type="ArrayMesh" uid="uid://pv5ljqods4b" path="res://entities/enemies/boss/pregnant_boss.obj" id="5_bdyoo"]
 [ext_resource type="PackedScene" uid="uid://wqt7vynq0unn" path="res://entities/player/models/hair.glb" id="6_bdyoo"]
 [ext_resource type="PackedScene" uid="uid://c877n6ydhad8p" path="res://entities/player/models/player.glb" id="6_jypvo"]
@@ -342,6 +344,25 @@ tracks/13/keys = {
 "method": &"finish"
 }]
 }
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimationPlayer/AudioStreamPlayer")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_2e7ko")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_a0no1")
+}],
+"times": PackedFloat32Array(4, 10)
+}
+tracks/14/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bdyoo"]
 _data = {
@@ -356,6 +377,8 @@ metadata/_custom_type_script = "uid://bw6tlvsy3jiyu"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=110852849]
 libraries/ = SubResource("AnimationLibrary_bdyoo")
 autoplay = &"autoplay"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=1151554879]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1109520804]
 environment = ExtResource("2_v1c0h")

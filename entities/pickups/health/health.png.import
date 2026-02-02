@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7de7bem2ka76"
 path.s3tc="res://.godot/imported/health.png-37b395bfd272484be902049a24493121.s3tc.ctex"
+path.etc2="res://.godot/imported/health.png-37b395bfd272484be902049a24493121.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://entities/pickups/health/health.png"
-dest_files=["res://.godot/imported/health.png-37b395bfd272484be902049a24493121.s3tc.ctex"]
+dest_files=["res://.godot/imported/health.png-37b395bfd272484be902049a24493121.s3tc.ctex", "res://.godot/imported/health.png-37b395bfd272484be902049a24493121.etc2.ctex"]
 
 [params]
 
