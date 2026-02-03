@@ -82,6 +82,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PixelatedViewportContainer/SubViewport/Goal" index="0" unique_id=2073914165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 shape = SubResource("SphereShape3D_tbvuv")
 
 [node name="HospitalInterior" parent="PixelatedViewportContainer/SubViewport" parent_id_path=PackedInt32Array(451725261) index="2" unique_id=550789690 instance=ExtResource("3_l1wdh")]

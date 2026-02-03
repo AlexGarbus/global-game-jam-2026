@@ -7,6 +7,7 @@ const Player := preload("uid://covk2281f0gro")
 
 
 func _on_boss_battling_changed(value: bool) -> void:
-	if not value and not _player.input_disabled:
+	if value:
+		_player.input_disabled = false
+	else:
 		_player.process_mode = Node.PROCESS_MODE_DISABLED
-	_player.input_disabled = not value
