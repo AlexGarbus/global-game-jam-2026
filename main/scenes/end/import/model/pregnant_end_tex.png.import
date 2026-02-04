@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx5gptj1qttl8"
-path.s3tc="res://.godot/imported/pregnant_end_tex.png-44fe6894bf0c086a11b4ad14a66d218a.s3tc.ctex"
-path.etc2="res://.godot/imported/pregnant_end_tex.png-44fe6894bf0c086a11b4ad14a66d218a.etc2.ctex"
+path="res://.godot/imported/pregnant_end_tex.png-44fe6894bf0c086a11b4ad14a66d218a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://main/scenes/end/import/model/pregnant_end_tex.png"
-dest_files=["res://.godot/imported/pregnant_end_tex.png-44fe6894bf0c086a11b4ad14a66d218a.s3tc.ctex", "res://.godot/imported/pregnant_end_tex.png-44fe6894bf0c086a11b4ad14a66d218a.etc2.ctex"]
+dest_files=["res://.godot/imported/pregnant_end_tex.png-44fe6894bf0c086a11b4ad14a66d218a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
