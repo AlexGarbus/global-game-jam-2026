@@ -6,6 +6,11 @@
 font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_ejkxy"]
+font_size = 24
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2b4hu"]
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -19,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ejkxy")
 _default_main_button = NodePath("MainScreen/ResumeButton")
-_default_credits_button = NodePath("CreditsScreen/HBoxContainer/BackButton")
+_default_credits_button = NodePath("CreditsScreen/VBoxContainer/BackButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=263541688]
 layout_mode = 1
@@ -32,7 +37,6 @@ color = Color(0, 0, 0, 0.5921569)
 
 [node name="MainScreen" type="VBoxContainer" parent="." unique_id=583372843]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,6 +78,7 @@ text = "Quit"
 
 [node name="CreditsScreen" type="Control" parent="." unique_id=2028781187]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,53 +86,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CreditsScreen" unique_id=1144162724]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen" unique_id=1299088137]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 140.0
+offset_right = -140.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CreditsScreen/HBoxContainer" unique_id=1939874078]
+[node name="Label" type="Label" parent="CreditsScreen/VBoxContainer" unique_id=974112917]
 layout_mode = 2
 text = "ART, MODELS, PROGRAMMING
 Alex Garbus
 
 MUSIC
 Aaron C Cloutier
+ "
+label_settings = SubResource("LabelSettings_ejkxy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CreditsScreen/VBoxContainer" unique_id=182514651]
+custom_minimum_size = Vector2(1000, 283)
+layout_mode = 2
+text = "Made with Godot Engine: https://godotengine.org/license/
 
 FREE ART ASSETS
-Explosion by Cuzco
-Fire and Spell Animations by ztn & Spiney
+Explosion by Cuzco, Fire and Spell Animations by ztn & Spiney
 
 FREE AUDIO ASSETS
-boing by suzenako
-Car horn beep beep two beeps honk honk by AmishRob
-Cartoon jump by Bastianhallo
-dramatic sting by u_903n3qx7rq
-F-106 fly-by by cryptRomancer
-Failure Drum Sound Effect 1 & 2 by FunWithSound
-Horse Neigh by DRAGON-STUDIO
-HQ Explosion by Quaker540
-Laser Gun by sunnyflower
-Power on by colorsCrimsonTears
-Scream by rogueturtle
-Stone slide by u_y3wk5ympz8
-Success Fanfare Trumpets by FunWithSound
-Tada Fanfare A by plasterbrain
+boing by suzenako, Car horn beep beep two beeps honk honk by AmishRob, Cartoon jump by Bastianhallo, dramatic sting by u_903n3qx7rq, F-106 fly-by by cryptRomancer, Failure Drum Sound Effect 1 & 2 by FunWithSound, Horse Neigh by DRAGON-STUDIO, HQ Explosion by Quaker540, Laser Gun by sunnyflower, Power on by colorsCrimsonTears, Scream by rogueturtle, Stone slide by u_y3wk5ympz8, Success Fanfare Trumpets by FunWithSound, Tada Fanfare A by plasterbrain
+ "
+label_settings = SubResource("LabelSettings_2b4hu")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-Made with Godot Engine: https://godotengine.org/license/"
-label_settings = SubResource("LabelSettings_ejkxy")
-
-[node name="BackButton" type="Button" parent="CreditsScreen/HBoxContainer" unique_id=1635588350]
+[node name="BackButton" type="Button" parent="CreditsScreen/VBoxContainer" unique_id=1635588350]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_horizontal = 4
 text = "Back"
 
 [connection signal="pressed" from="MainScreen/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="toggled" from="MainScreen/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="pressed" from="MainScreen/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MainScreen/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="CreditsScreen/HBoxContainer/BackButton" to="." method="_on_credits_back_button_pressed"]
+[connection signal="pressed" from="CreditsScreen/VBoxContainer/BackButton" to="." method="_on_credits_back_button_pressed"]
