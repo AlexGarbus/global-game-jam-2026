@@ -152,6 +152,7 @@ volume_db = 10.0
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Audio" unique_id=337283743]
 stream = ExtResource("14_3wlsy")
+volume_db = -2.0
 
 [node name="Super" type="AudioStreamPlayer" parent="Audio" unique_id=1919580445]
 stream = ExtResource("17_mtric")
@@ -162,7 +163,7 @@ volume_db = -4.0
 
 [node name="Horse" type="AudioStreamPlayer" parent="Audio" unique_id=585210989]
 stream = ExtResource("19_t1t22")
-volume_db = -1.0
+volume_db = -2.0
 
 [node name="Jet" type="AudioStreamPlayer" parent="Audio" unique_id=308949107]
 stream = ExtResource("20_50fht")
