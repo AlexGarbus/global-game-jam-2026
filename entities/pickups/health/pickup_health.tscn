@@ -10,8 +10,8 @@ script = ExtResource("3_x70pa")
 delta = 2
 metadata/_custom_type_script = "uid://dk46doo5boadv"
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hpito"]
-radius = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_x70pa"]
+size = Vector3(2, 2, 2)
 
 [node name="PickupHealth" type="Area3D" unique_id=57118570]
 collision_layer = 32
@@ -20,7 +20,7 @@ script = ExtResource("1_pd2u6")
 effects = Array[ExtResource("2_jen6u")]([SubResource("Resource_jf7fy")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=438998055]
-shape = SubResource("SphereShape3D_hpito")
+shape = SubResource("BoxShape3D_x70pa")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=604677716]
 billboard = 1

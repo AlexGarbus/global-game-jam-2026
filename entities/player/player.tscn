@@ -148,21 +148,26 @@ stream = ExtResource("16_mtric")
 
 [node name="Scream" type="AudioStreamPlayer" parent="Audio" unique_id=203085482]
 stream = ExtResource("13_3wlsy")
+volume_db = 10.0
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Audio" unique_id=337283743]
 stream = ExtResource("14_3wlsy")
+volume_db = -2.0
 
 [node name="Super" type="AudioStreamPlayer" parent="Audio" unique_id=1919580445]
 stream = ExtResource("17_mtric")
 
 [node name="Car" type="AudioStreamPlayer" parent="Audio" unique_id=215987337]
 stream = ExtResource("18_ghoj8")
+volume_db = -4.0
 
 [node name="Horse" type="AudioStreamPlayer" parent="Audio" unique_id=585210989]
 stream = ExtResource("19_t1t22")
+volume_db = -2.0
 
 [node name="Jet" type="AudioStreamPlayer" parent="Audio" unique_id=308949107]
 stream = ExtResource("20_50fht")
+volume_db = -4.0
 
 [node name="Effects" type="Node" parent="." unique_id=1103082749]
 script = ExtResource("2_bectd")

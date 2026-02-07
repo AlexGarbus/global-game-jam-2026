@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b0xolau4rr2fx" path="res://main/scenes/end/import/ui_end/ui_end.tscn" id="1_5orgy"]
 [ext_resource type="Script" uid="uid://bw6tlvsy3jiyu" path="res://main/scenes/main_scene.gd" id="1_n2yyy"]
 [ext_resource type="ArrayMesh" uid="uid://bspukaur712cy" path="res://main/scenes/end/import/model/pregnant_end.obj" id="2_8afmo"]
-[ext_resource type="Environment" path="res://main/scenes/end/import/environment.tres" id="2_67iw1"]
+[ext_resource type="Environment" uid="uid://c5qlxs2l8pxwa" path="res://main/scenes/end/import/environment.tres" id="2_67iw1"]
 [ext_resource type="Material" uid="uid://go44ro7nx67p" path="res://main/scenes/end/import/model/player_material.tres" id="4_wmnmt"]
 [ext_resource type="AudioStream" uid="uid://b4loypfscaycl" path="res://entities/player/audio/jump.wav" id="6_gh0u6"]
 [ext_resource type="AudioStream" uid="uid://bdpjeix2qo6cj" path="res://main/scenes/end/import/audio/end_fanfare.wav" id="7_p5nt3"]
